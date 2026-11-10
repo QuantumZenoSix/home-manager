@@ -273,10 +273,10 @@
         # ───────────────────────────────────────────────
         # Folders: programs inside ~/.dotfiles/<program>/
         # recursive = true is usually better for .dotfiles/*
-        ".claude" = {
-          source = ./dotfiles/.claude;
-          recursive = true;
-        };
+        #".claude" = {
+          #source = ./dotfiles/.claude;
+          #recursive = true;
+        #};
 
         ".config/lazygit" = {
           source = ./dotfiles/.config/lazygit;
