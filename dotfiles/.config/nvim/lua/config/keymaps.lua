@@ -91,8 +91,8 @@ end, { desc = "Search for word" })
 
 -- _______________________ Telescope __________________________
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Fuzzy File search - Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Fuzzy grep - Telescope live grep' })
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Fuzzy File search - Telescope find files' ,    remap = true})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Fuzzy grep - Telescope live grep',    remap = true })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Fuzzy buffer search - Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Fuzzy tags - Telescope help tags' })
 vim.keymap.set('n', '<leader>fc', require('telescope.builtin').command_history, { desc = 'Fuzzy command find - Search command history' })
