@@ -9,8 +9,7 @@ if [ -f home-manager/home.nix ]; then
     echo "[+] Skipping git clone..."
     cd ~/.config/home-manager/
 else
-    git clone https://github.com/QuantumZenoSix/dev-environment.git
-    mv dev-environment home-manager
+    git clone https://github.com/QuantumZenoSix/home-manager.git
     cd home-manager
 fi
 

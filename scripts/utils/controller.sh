@@ -29,9 +29,9 @@ fi
 cd ~/.config/home-manager
 
 # Install latest
-if [ -d ./dev-environment/ ]; then
-    echo "Found dev-environment. Re-cloning..."
-    $SUDO rm -rf ./dev-environment
+if [ -d ./home-manager/ ]; then
+    echo "Found home-manager. Re-cloning..."
+    $SUDO rm -rf ./home-manager
 fi
 
 # ────────────────────────────────────────────────
