@@ -174,6 +174,40 @@ Fedora, maybe one day.
 
 <br />
 
+## What if I'm using WSL?
+
+There are a few things worth doing post WSL install.
+
+<br />
+
+_Create a WSL.conf_
+Create `/etc/wsl.conf` and set a default user  
+```bash
+[boot]
+systemd=true
+
+[user]
+default=zeno
+```  
+
+<br />
+
+_Install some essential packages_
+- Git
+- Vim
+- coreutils
+- sudo/wheel
+
+
+<br />
+
+_Create a user_
+- Create a non-root user
+- Give them sudo/wheel perms
+- Run `export EDITOR=vim && visudo` (and consider setting that in the root's `.bashrc`)
+- Create/configure SSH keys
+<br />
+
 ## Important Keybinds  
 
 <br />
