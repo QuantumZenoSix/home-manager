@@ -183,7 +183,6 @@ Every command-line tool the Arch install path sets up, grouped by job, with what
 | `lazygit` | `lazygit` (AUR section) | Git TUI (config in `dotfiles/.config/lazygit`) | aliases `lg`, `gg` · `?` inside for keys |
 | `oy` † | `oyo` (AUR) | Diff viewer: step through changes, or a classic scrollable diff (config in `dotfiles/.config/oyo`) | `oy --help` |
 | `git filter-repo` | `git-filter-repo` (pacman) | Rewrite history (replaces `filter-branch`) | `git filter-repo --path secret.txt --invert-paths` · `git filter-repo --strip-blobs-bigger-than 10M` |
-| `gittop` † | `gittop` (AUR) | **AUR package = GitHub notifications client** (AmarBego/GitTop). See [§17](#17-install-issues-found) | `gittop` |
 
 ---
 
@@ -354,7 +353,7 @@ Found while generating this doc. Nothing has been changed.
 | --- | --- | --- | --- |
 | 1 | `arch_base.txt` → `NetworkManager` | Pacman names are case-sensitive and the package is `networkmanager`, so this line fails with "target not found" (it's in the pacman section, so there's no yay fallback) | Rename to `networkmanager` |
 | 2 | `arch_base.txt` → `eget` (AUR section) | `yay -Si eget` finds nothing, so the install fails | Use upstream's install script, or `go install github.com/zyedidia/eget@latest` |
-| 3 | `arch_base.txt` → `gittop` | The AUR `gittop` is **AmarBego/GitTop, a GitHub notifications client**, but `cmd_list.txt` describes it as an "interactive git repository monitor" | Confirm which tool you meant and fix the package or the description |
+| 3 | ~~`arch_base.txt` → `gittop`~~ | **Resolved:** `gittop` removed from `arch_base.txt`, `pkg_install_debian.sh` and `cmd_list.txt` | — |
 | 4 | `pkg_install_arch.sh` → `$PACMAN libsixel-player` | No such package (`pacman -Si` errors) | Probably `libsixel` (sixel image support for spotify_player) |
 | 5 | `controller.sh` + `.zsh_customizations` | `zsh-syntax-highlighting` is in `plugins=(…)`, but no script clones it into `~/.oh-my-zsh/custom/plugins/`. `install_oh_my_zsh_and_powerline` also `rm -rf`s `~/.oh-my-zsh` first, so a reinstall deletes it and oh-my-zsh warns "plugin not found" | Add `git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"` next to the powerlevel10k clone |
 | 6 | `.bash_aliases` → `alias l='eza'` | `eza` isn't in any package list | Add `eza` to `arch_base.txt`, or drop the alias |

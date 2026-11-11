@@ -97,6 +97,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s /usr/share/nvm/init-nvm.sh ] && \. /usr/share/nvm/init-nvm.sh  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# X-CMD (provides the `x` function + `x-cmd`). Its installer can't add this itself
+# because ~/.zshrc is a read-only Home Manager symlink.
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X"
+
 
 # ────────────────────────────────────────────────
 # LOAD PROMPT AND SHELL ENVIRONMENT
@@ -154,19 +158,62 @@ export PATH="$PATH:${HOME}/.nix-profile/bin"
 # ────────────────────────────────────────────────
 # Keep this at the end - this is a function that lets you fuzzy-find all my custom functions
 
-# Command finder (cf) | find all my custom bash functions
+# Command finder (cf) | find my custom bash functions/aliases or installed packages
+#   cf      -> asks which category, then fuzzy-find it grouped by use
+#   cf f    -> my functions & aliases (BSH entries)   [Enter at the prompt = f]
+#   cf p    -> packages & tools (CMD entries)
+#   cf a    -> everything
+# Entries + groups live in pkg_lists/cmd_list.txt  (TYPE | GROUP | name | description)
 command_finder(){
-    # eval $(compgen -c | grep -E '^(nx_|gt_|nv_|dk_|ut_|ps1_)' | sort | fzf)
+    local cmd_list=~/.config/home-manager/pkg_lists/cmd_list.txt
+    local choice=$1 type title sel
 
-    cmd_list=~/.config/home-manager/pkg_lists/cmd_list.txt
+    if [[ -z $choice ]]; then
+        print -nP "%BLooking for:%b  %F{green}[f]%f my functions/aliases   %F{cyan}[p]%f packages/tools   %F{yellow}[a]%f all  "
+        read -k 1 choice || return
+        print
+    fi
 
-    $(sort -r -t'|' -k 2 $cmd_list | fzf --delimiter=' *\| *' \
-  --with-nth=1,2,3 \
-  --accept-nth=2 \
-  --header="Select command to run (full lines shown)" \
-  --preview='echo {}' \
-  --preview-window=up:3)
+    case $choice in
+        f|b|$'\n') type=BSH; title="Functions & aliases" ;;
+        p|c)       type=CMD; title="Packages & tools" ;;
+        a)         type=ALL; title="Everything" ;;
+        *)         return 0 ;;
+    esac
 
+    # Each fzf line is "name<TAB>display". Group header lines have an empty name,
+    # so selecting one does nothing. Groups keep the order they appear in the file.
+    sel=$(awk -F' *[|] *' -v want="$type" '
+        /^[[:space:]]*(#|$)/ { next }
+        want != "ALL" && $1 != want { next }
+        {
+            key = $1 SUBSEP $2
+            if (!(key in cnt)) order[++ng] = key
+            n = ++cnt[key]
+            name[key, n] = $3; desc[key, n] = $4
+            if (length($3) > w) w = length($3)
+        }
+        END {
+            fmt = "%s\t   \033[%sm%-" w "s\033[0m  %s  \033[2m[%s]\033[0m\n"
+            for (g = 1; g <= ng; g++) {
+                key = order[g]; split(key, kp, SUBSEP)
+                label = kp[2]
+                if (want == "ALL") label = label (kp[1] == "BSH" ? " · functions" : " · packages")
+                color = (kp[1] == "BSH") ? "32" : "36"
+                printf "\t\033[1;33m── %s ──\033[0m\n", label
+                for (i = 1; i <= cnt[key]; i++)
+                    printf fmt, name[key, i], color, name[key, i], desc[key, i], kp[2]
+            }
+        }' "$cmd_list" |
+        fzf --ansi --no-sort --layout=reverse --height=80% \
+            --delimiter=$'\t' --with-nth=2 \
+            --prompt="$title > " \
+            --header="Enter: run   Esc: cancel   (typing a group name filters to that group)" |
+        cut -f1)
+
+    [[ -z $sel ]] && return 0
+    print -s -- "$sel"   # add to history so up-arrow can re-run / edit it with args
+    eval "$sel"          # eval (not $(...)) so aliases like gt_show_merges work too
 }
 alias cf="command_finder "
 

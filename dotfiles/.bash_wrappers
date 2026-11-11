@@ -384,8 +384,8 @@ ps1_powerline(){
 # ────────────────────────────────────────────────
 
 # Keep this at the end - this is a function that lets you fuzzy-find all my custom functions
-# Command finder (cf)
-command_finder(){
+# Command finder beta (cf_beta) | old version, kept for reference. The real `cf` is in .zshrc
+command_finder_beta(){
     eval $(compgen -c | grep -E '^(nx_|gt_|nv_|dk_|ut_)' | sort | fzf)
 }
-alias cf="command_finder"
+alias cf_beta="command_finder_beta"

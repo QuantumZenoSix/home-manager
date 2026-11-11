@@ -365,14 +365,6 @@ rm -f "lazyssh_$(uname)_$(uname -m).tar.gz"
 echo "[+] Installing darya..."          # cli alternative to gui-based baobab (https://github.com/GNOME/baobab)
 curl -fsSL https://mr.katebzadeh.xyz/tools/darya/install | bash
 
-echo "[+] Installing GitTop (GitHub notifications client)..."
-if ! command -v gittop >/dev/null 2>&1; then
-    GITTOP_TAG=$(curl -fsSL https://api.github.com/repos/AmarBego/GitTop/releases/latest | jq -r .tag_name)
-    curl -fLo /tmp/gittop.deb "https://github.com/AmarBego/GitTop/releases/download/${GITTOP_TAG}/gittop-${GITTOP_TAG#v}-linux-gnu-x86_64.deb" \
-        && $SUDO apt install -y /tmp/gittop.deb
-    rm -f /tmp/gittop.deb
-fi
-
 echo "[+] Installing Posting via uv..."
 uv tool install --python 3.13 posting
 

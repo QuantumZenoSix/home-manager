@@ -149,7 +149,6 @@ uv                # Python package and virtual env manager
 wlsunset-git      # For night mode - warm colors to reduce blue light
 yazi              # tui file explorer  
 zimg              # libzimg2: Image scaling 
-gittop
 snitch-bin
 qview
 

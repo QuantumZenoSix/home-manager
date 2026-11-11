@@ -1,130 +1,166 @@
-CMD | darya | Fast TUI disk usage explorer with live treemap
-BSH | dk_arch | Launches an Arch Linux Docker container with basic tools installed.
-BSH | dk_enter_smb_container | Enters a running Samba Docker container via exec.
-BSH | dk_force_old_version | Sets DOCKER_API_VERSION to 1.43 for compatibility.
-BSH | dk_ubuntu | Launches an Ubuntu 24.04 Docker container with tools and sudo.
-BSH | gt_add_ssh_key_and_push | Loads SSH agent/key then pushes to Git.
-BSH | gt_apply_stash_by_name | Applies a Git stash by its descriptive name.
-BSH | gt_clone_all_public_repos | Clones all public GitHub repos for a given user.
-BSH | gt_discard_changes_pull_master_ | (alias) Stashes/drops changes, checks out master, and pulls.
-BSH | gt_discard_old_stashes | Drops Git stashes older than the latest 10.
-BSH | gt_fix_conflict | Resets branch and pulls origin to resolve conflicts.
-BSH | gt_merge_changes_from_stash | Merges a named stash into a new branch from master.
-BSH | gt_retrack_branch | Deletes and re-tracks current branch from origin.
-BSH | gt_set_connection_to_ssh | Converts HTTPS remote URL to SSH (GitHub/Codeberg).
-BSH | gt_set_sshkey | Configures a specific SSH key for the current Git repo.
-BSH | gt_show_merges | Shows recent merges with DEV- ticket pattern.
-BSH | gt_stage_and_commit | Stages all changes and commits with a message.
-BSH | nv_clear_swaps | Removes Neovim swap files.
-BSH | nv_edit_conf | Opens Neovim config directory in nvim.
-BSH | nv_clear_lockfile | Removes deployed Neovim lazy-lock.json (and .backup copies) before a HM switch.
-BSH | nv_update_lazy | Builds and installs latest stable Neovim from source.
-BSH | nx_make_dev_flake | Creates a basic Nix devShell flake + direnv.
-BSH | nx_remove_home_manager | Uninstalls and cleans up Home Manager.
-BSH | nx_up | Updates Home Manager flake, applies changes, and backs up configs.
-BSH | ps1_ohmyposh | Switches shell to Oh My Posh prompt.
-BSH | ps1_powerline | Switches shell to Powerline prompt.
-BSH | ps1_starship | Switches shell to Starship prompt.
-BSH | ut_diff | Side-by-side colored diff suppressing common lines.
-BSH | ut_o_clear_log_files | Truncates logs and vacuums journal.
-BSH | ut_o_colorme | Syntax highlights input with pygmentize.
-BSH | ut_o_move_conflicted_files    | Move local conflicted syncthing files to a .conflicts folder.
-BSH | ut_o_create_avante_md | Creates project instructions file for Avante AI.
-BSH | ut_o_create_systemd_service | (Not found in provided files)
-BSH | ut_o_mp3_dl | Downloads YouTube audio as MP3 (yt-dlp or youtube-dl).
-BSH | ut_o_tmux_init | Runs tmux init script and attaches to Main session.
-BSH | ut_o_uv_init | Initializes uv Python project, venv, and activates it.
-BSH | ut_ssh_make_key | Generates Ed25519 SSH key with comment.
-BSH | ut_ssh_reload_key | Restarts SSH agent and adds default key.
-BSH | ut_sys_change_pop_graphics | Switches System76 graphics mode (low/med/high).
-BSH | ut_sys_create_and_assume_user | Creates user, adds to sudo/wheel, sets password, and switches.
-BSH | ut_sys_detect_distro_type | Detects distro family (debian/fedora/arch/null).
-BSH | ut_sys_restart_audio | Restarts WirePlumber/PipeWire services.
-BSH | ut_sys_update_nvidia_drivers_arch | Updates NVIDIA packages on Arch and shows nvidia-smi.
-BSH | ut_sys_view_incoming_requests | Captures incoming TCP traffic on a port (default 22).
-BSH | ut_o_taildrop_to_phone | Taildropfile to phone.
-BSH | ut_txt_docx_to_md | Converts .docx to Markdown with pandoc (media extraction).
-BSH | ut_txt_list_difference | Shows lines in file2 not present in file1.
-BSH | ut_wsl_cp | Copies files between WSL and Windows host directories.
-BSH | ut_wsl_get_diskusag | Runs ncdu on filesystem excluding /mnt.
-CMD | 7zip | High compression file archiver [tags: archive]
-CMD | bc | Arbitrary precision calculator []
-CMD | bluetoothctl | Bluetooth tool
-CMD | brightnessctl | Brightness control for laptop and monitor backlights
-CMD | btop | Modern colorful resource monitor (TUI)
-CMD | cpupower | CPU frequency and power management tool
-CMD | csvlens | Terminal CSV viewer
-CMD | dmidecode | DMI/SMBIOS hardware information tool
-CMD | docker | Container platform
-CMD | docker-compose | Multi-container Docker orchestration
-CMD | doxx | .docx viewer
-CMD | duf | Modern disk usage viewer (`df` alternative)
-CMD | dust | Modern visual disk usage tool (`du` alternative)
-CMD | dysk | Modern disk usage viewer with nice visuals
-CMD | fastfetch | Fast system information tool (neofetch successor)
-CMD | fd | Fast, simple and user-friendly alternative to find
-CMD | freerdp | RDP client libraries and tools
-CMD | fzf | Command-line fuzzy finder
-CMD | git | Distributed version control system
-CMD | gittop | Interactive git repository monitor
-CMD | glances | System monitoring dashboard (CLI + web)
-CMD | glow | Markdown renderer for the terminal
-CMD | go | Go programming language toolchain
-CMD | htop | Interactive process viewer
-CMD | hwdetect | Hardware detection script
-CMD | hwinfo | Detailed hardware information tool
-CMD | jless | Terminal JSON viewer
-CMD | jq | Lightweight command-line JSON processor
-CMD | lazydocker | Terminal UI for Docker
-CMD | lazygit | Terminal UI for Git
-CMD | lazysql | Terminal UI for SQL databases
-CMD | less | Advanced file pager
-CMD | lsscsi | List SCSI devices
-CMD | neohtop-cli | Modern sleek dashboard/process viewer
-CMD | neovim | Modern extensible text editor
-CMD | netctl | Arch command-line network manager
-CMD | nmcli | Command-line network manager
-CMD | npm | Node.js package manager
-CMD | nvidia-smi | View/change NVIDIA driver settings
-CMD | nvtop | GPU Monitoring tool
-CMD | nvm | Node Version Manager
-CMD | oyo | Git diff viewer with step-through capabilitties
-CMD | pandoc-cli | Universal document converter
-CMD | perl | Perl programming language
-CMD | playerctl | Media player controller
-CMD | plocate | Fast locate implementation
-CMD | posting | HTTP client / API tester (GUI)
-CMD | pv | Pipe viewer (progress bar for pipes)
-CMD | restic | Fast and secure backup program
-CMD | ripgrep | Fast grep alternative (`rg`)
-CMD | rsync | File synchronization tool
-CMD | smartctl | Disk health monitoring (S.M.A.R.T.)
-CMD | smbclient | Samba client for accessing Windows/SMB network shares
-CMD | snitch | Network Monitoring/listening notification tool
-CMD | spotify-player | Spotify client (TUI)
-CMD | sshfs | SSH filesystem client
-CMD | sshpass | Non-interactive SSH password tool
-CMD | sudo | Superuser privilege tool
-CMD | switcheroo-control | Hybrid GPU switching support
-CMD | sxiv | Simple X image viewer (GUI)
-CMD | syncthing | Continuous file synchronization
-CMD | tailscale | Mesh VPN (WireGuard based)
-CMD | tcpdump | Network packet analyzer
-CMD | termshark | Terminal interface for Wireshark
-CMD | tlp | Laptop power management
-CMD | tmux | Terminal multiplexer
-CMD | tree | Directory tree listing
-CMD | treemd | Markdown tree viewer
-CMD | ufw | Uncomplicated Firewall
-CMD | unzip | ZIP file extractor
-CMD | upower | Power management abstraction
-CMD | uv | Fast Python package manager
-CMD | vim | Classic text editor
-CMD | wget | Non-interactive network downloader
-CMD | which | Locate command path
-CMD | wiremix | Audio device monitoring tool
-CMD | wireshark-cli | Network protocol analyzer (CLI version / tshark)
-CMD | wpa_supplicant | Wi-Fi authentication daemon
-CMD | x-cmd | Command-line tool suite
-CMD | yazi | Fast terminal file manager
-CMD | yt-dlp | YouTube/video downloader
+# Read by `cf` (command_finder in dotfiles/.zshrc).
+# Format:  TYPE | GROUP | name | description
+#   TYPE  = BSH (my custom bash functions / aliases) or CMD (installed packages / tools)
+#   GROUP = broad use; `cf` shows items grouped under these headings
+# Blank lines and lines starting with '#' are ignored.
+
+# ── BSH: my functions & aliases ──────────────────────────────
+
+BSH | Git | gt_add_ssh_key_and_push | (alias) Loads SSH agent/key then pushes to Git.
+BSH | Git | gt_apply_stash_by_name | Applies a Git stash by its descriptive name.
+BSH | Git | gt_clone_all_public_repos | Clones all public GitHub repos for a given user.
+BSH | Git | gt_discard_changes_pull_master_ | (alias) Stashes/drops changes, checks out master, and pulls.
+BSH | Git | gt_discard_old_stashes | Drops Git stashes older than the latest 10.
+BSH | Git | gt_fix_conflict | Resets branch and pulls origin to resolve conflicts.
+BSH | Git | gt_merge_changes_from_stash | Merges a named stash into a new branch from master.
+BSH | Git | gt_retrack_branch | Deletes and re-tracks current branch from origin.
+BSH | Git | gt_set_connection_to_ssh | Converts HTTPS remote URL to SSH (GitHub/Codeberg).
+BSH | Git | gt_set_sshkey | Configures a specific SSH key for the current Git repo.
+BSH | Git | gt_show_merges | (alias) Shows recent merges with DEV- ticket pattern.
+BSH | Git | gt_stage_and_commit | Stages all changes and commits with a message.
+
+BSH | Docker | dk_add_user_to_docker_group | Adds $USER to the docker group and restarts docker.
+BSH | Docker | dk_arch | Launches an Arch Linux Docker container with basic tools installed.
+BSH | Docker | dk_enter_smb_container | Enters a running Samba Docker container via exec.
+BSH | Docker | dk_force_old_version | Sets DOCKER_API_VERSION to 1.43 for compatibility.
+BSH | Docker | dk_ubuntu | Launches an Ubuntu 24.04 Docker container with tools and sudo.
+
+BSH | Nix & Home Manager | nx_make_dev_flake | Creates a basic Nix devShell flake + direnv.
+BSH | Nix & Home Manager | nx_remove_home_manager | Uninstalls and cleans up Home Manager.
+BSH | Nix & Home Manager | nx_up | Updates Home Manager flake, applies changes, and backs up configs.
+
+BSH | Neovim | nv_clear_lockfile | Removes deployed Neovim lazy-lock.json (and .backup copies) before a HM switch.
+BSH | Neovim | nv_clear_swaps | Removes Neovim swap files.
+BSH | Neovim | nv_edit_conf | Opens Neovim config directory in nvim.
+BSH | Neovim | nv_update_lazy | Builds and installs latest stable Neovim from source.
+
+BSH | Shell & prompt | ps1_ohmyposh | Switches shell to Oh My Posh prompt.
+BSH | Shell & prompt | ps1_powerline | Switches shell to Powerline prompt.
+BSH | Shell & prompt | ps1_starship | Switches shell to Starship prompt.
+BSH | Shell & prompt | ut_o_tmux_init | Runs tmux init script and attaches to Main session.
+
+BSH | SSH & networking | ut_o_taildrop_to_phone | Taildrop a file to phone.
+BSH | SSH & networking | ut_ssh_make_key | Generates Ed25519 SSH key with comment.
+BSH | SSH & networking | ut_ssh_reload_key | Restarts SSH agent and adds default key.
+BSH | SSH & networking | ut_sys_view_incoming_requests | Captures incoming TCP traffic on a port (default 22).
+BSH | SSH & networking | ut_ufw_only_allow_tailscale | Configures ufw to allow inbound only on tailscale0.
+
+BSH | System & hardware | ut_o_clear_log_files | Truncates logs and vacuums journal.
+BSH | System & hardware | ut_o_create_systemd_service | Interactive wizard to create a systemd service + timer.
+BSH | System & hardware | ut_sys_change_pop_graphics | Switches System76 graphics mode (low/med/high).
+BSH | System & hardware | ut_sys_create_and_assume_user | Creates user, adds to sudo/wheel, sets password, and switches.
+BSH | System & hardware | ut_sys_detect_distro_type | Detects distro family (debian/fedora/arch/null).
+BSH | System & hardware | ut_sys_update_nvidia_drivers_arch | Updates NVIDIA packages on Arch and shows nvidia-smi.
+
+BSH | Audio & video | ut_o_mp3_dl | Downloads YouTube audio as MP3 (yt-dlp or youtube-dl).
+BSH | Audio & video | ut_sys_restart_audio | Restarts WirePlumber/PipeWire services.
+
+BSH | Text & documents | ut_diff | Side-by-side colored diff suppressing common lines.
+BSH | Text & documents | ut_o_colorme | Syntax highlights input with pygmentize.
+BSH | Text & documents | ut_txt_docx_to_md | Converts .docx to Markdown with pandoc (media extraction).
+BSH | Text & documents | ut_txt_list_difference | Shows lines in file2 not present in file1.
+
+BSH | Files & sync | ut_o_move_conflicted_files | Move local conflicted syncthing files to a .conflicts folder.
+
+BSH | Dev & AI | ut_o_create_avante_md | Creates project instructions file for Avante AI.
+BSH | Dev & AI | ut_o_run_ollama_webui | Pulls and runs the Open WebUI container on port 3000.
+BSH | Dev & AI | ut_o_uv_init | Initializes uv Python project, venv, and activates it.
+
+BSH | WSL | ut_wsl_cp | Copies files between WSL and Windows host directories.
+BSH | WSL | ut_wsl_get_diskusage | Runs ncdu on filesystem excluding /mnt.
+
+# ── CMD: packages & tools ────────────────────────────────────
+
+CMD | System monitoring | btop | Modern colorful resource monitor (TUI)
+CMD | System monitoring | fastfetch | Fast system information tool (neofetch successor)
+CMD | System monitoring | glances | System monitoring dashboard (CLI + web)
+CMD | System monitoring | htop | Interactive process viewer
+CMD | System monitoring | neohtop-cli | Modern sleek dashboard/process viewer
+CMD | System monitoring | nvtop | GPU Monitoring tool
+
+CMD | Disk & storage | darya | Fast TUI disk usage explorer with live treemap
+CMD | Disk & storage | duf | Modern disk usage viewer (`df` alternative)
+CMD | Disk & storage | dust | Modern visual disk usage tool (`du` alternative)
+CMD | Disk & storage | dysk | Modern disk usage viewer with nice visuals
+CMD | Disk & storage | lsscsi | List SCSI devices
+CMD | Disk & storage | smartctl | Disk health monitoring (S.M.A.R.T.)
+
+CMD | Hardware & power | bluetoothctl | Bluetooth tool
+CMD | Hardware & power | brightnessctl | Brightness control for laptop and monitor backlights
+CMD | Hardware & power | cpupower | CPU frequency and power management tool
+CMD | Hardware & power | dmidecode | DMI/SMBIOS hardware information tool
+CMD | Hardware & power | hwdetect | Hardware detection script
+CMD | Hardware & power | hwinfo | Detailed hardware information tool
+CMD | Hardware & power | nvidia-smi | View/change NVIDIA driver settings
+CMD | Hardware & power | switcherooctl | Hybrid GPU switching support (pkg: switcheroo-control)
+CMD | Hardware & power | tlp | Laptop power management
+CMD | Hardware & power | upower | Power management abstraction
+
+CMD | Networking & remote | xfreerdp3 | RDP client (pkg: freerdp)
+CMD | Networking & remote | netctl | Arch command-line network manager
+CMD | Networking & remote | nmcli | Command-line network manager
+CMD | Networking & remote | smbclient | Samba client for accessing Windows/SMB network shares
+CMD | Networking & remote | snitch | Network Monitoring/listening notification tool
+CMD | Networking & remote | sshfs | SSH filesystem client
+CMD | Networking & remote | sshpass | Non-interactive SSH password tool
+CMD | Networking & remote | tailscale | Mesh VPN (WireGuard based)
+CMD | Networking & remote | tcpdump | Network packet analyzer
+CMD | Networking & remote | termshark | Terminal interface for Wireshark
+CMD | Networking & remote | ufw | Uncomplicated Firewall
+CMD | Networking & remote | wget | Non-interactive network downloader
+CMD | Networking & remote | tshark | Network protocol analyzer, Wireshark CLI (pkg: wireshark-cli)
+CMD | Networking & remote | wpa_supplicant | Wi-Fi authentication daemon
+
+CMD | Audio & video | playerctl | Media player controller
+CMD | Audio & video | spotify_player | Spotify client, TUI (pkg: spotify-player)
+CMD | Audio & video | sxiv | Simple X image viewer (GUI)
+CMD | Audio & video | wiremix | Audio device monitoring tool
+CMD | Audio & video | yt-dlp | YouTube/video downloader
+
+CMD | Git | git | Distributed version control system
+CMD | Git | lazygit | Terminal UI for Git
+CMD | Git | oy | Git diff viewer with step-through capabilities (pkg: oyo)
+
+CMD | Containers | docker | Container platform
+CMD | Containers | docker-compose | Multi-container Docker orchestration
+CMD | Containers | lazydocker | Terminal UI for Docker
+
+CMD | Dev & languages | go | Go programming language toolchain
+CMD | Dev & languages | lazysql | Terminal UI for SQL databases
+CMD | Dev & languages | npm | Node.js package manager
+CMD | Dev & languages | nvm | Node Version Manager
+CMD | Dev & languages | perl | Perl programming language
+CMD | Dev & languages | posting | HTTP client / API tester (GUI)
+CMD | Dev & languages | uv | Fast Python package manager
+
+CMD | Editors & terminal | nvim | Modern extensible text editor (pkg: neovim)
+CMD | Editors & terminal | tmux | Terminal multiplexer
+CMD | Editors & terminal | vim | Classic text editor
+CMD | Editors & terminal | x | x-cmd command-line tool suite (pkg: x-cmd)
+
+CMD | Files & search | 7z | High compression file archiver (pkg: 7zip)
+CMD | Files & search | fd | Fast, simple and user-friendly alternative to find
+CMD | Files & search | fzf | Command-line fuzzy finder
+CMD | Files & search | plocate | Fast locate implementation
+CMD | Files & search | rg | Fast grep alternative (pkg: ripgrep)
+CMD | Files & search | tree | Directory tree listing
+CMD | Files & search | unzip | ZIP file extractor
+CMD | Files & search | yazi | Fast terminal file manager
+
+CMD | Backup & sync | restic | Fast and secure backup program
+CMD | Backup & sync | rsync | File synchronization tool
+CMD | Backup & sync | syncthing | Continuous file synchronization
+
+CMD | Docs & data viewers | csvlens | Terminal CSV viewer
+CMD | Docs & data viewers | doxx | .docx viewer
+CMD | Docs & data viewers | glow | Markdown renderer for the terminal
+CMD | Docs & data viewers | jless | Terminal JSON viewer
+CMD | Docs & data viewers | jq | Lightweight command-line JSON processor
+CMD | Docs & data viewers | less | Advanced file pager
+CMD | Docs & data viewers | pandoc | Universal document converter (pkg: pandoc-cli)
+CMD | Docs & data viewers | treemd | Markdown tree viewer
+
+CMD | Shell utilities | bc | Arbitrary precision calculator
+CMD | Shell utilities | pv | Pipe viewer (progress bar for pipes)
+CMD | Shell utilities | sudo | Superuser privilege tool
+CMD | Shell utilities | which | Locate command path
