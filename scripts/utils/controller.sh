@@ -446,6 +446,7 @@ if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
         cp -r dotfiles/.config/noctalia/* ~/.config/noctalia/
         cp -r dotfiles/.config/Kvantum/* ~/.config/Kvantum/
         cp -r dotfiles/.config/shelly/* ~/.config/shelly/
+        cp -v ./dotfiles/.local/state/noctalia/settings.toml ~/.local/state/noctalia/settings.toml
 
         # Copy theme
         $SUDO cp ./config_exports/sddm.conf /etc/sddm.conf
@@ -454,8 +455,8 @@ if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
 
         MSG="
         ### Post-Install Todos
-        - Copy Login Screen Files (/usr/share/sddm/themes/)
-        - Copy Niri config (~/.config/niri)
+        - Copy Login Screen Files (/usr/share/sddm/themes/ and /etc/sddm.conf.d/) [Should be done - just confirm]
+        - Copy Niri config (~/.config/niri ~/.local/state/noctalia/settings.toml) [Should be done - just confirm]
         - Connect to tailscale
         - Connect to samba share (ada-pi)
         - Connect to syncthing for Obsdian notes

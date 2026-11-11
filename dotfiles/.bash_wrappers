@@ -197,9 +197,12 @@ nx_up(){
 
     # While I'm here, backup any niri/noctalia changes
     [[ -d ~/.config/niri/ ]] && cp -r ~/.config/niri/* ~/.config/home-manager/dotfiles/.config/niri/
-    [[ -d ~/.config/noctalia/ ]] && cp -r ~/.config/noctalia/* ~/.config/home-manager/dotfiles/.config/noctalia/
     [[ -d ~/.config/shelly/ ]] && cp -r ~/.config/shelly/* ~/.config/home-manager/dotfiles/.config/shelly/
     [[ -d ~/.config/Kvantum/ ]] && cp -r ~/.config/Kvantum/* ~/.config/home-manager/dotfiles/.config/Kvantum/
+    # v4
+    [[ -d ~/.config/noctalia/ ]] && cp -r ~/.config/noctalia/* ~/.config/home-manager/dotfiles/.config/noctalia/
+    # v5
+    [[ -f ~/.local/state/noctalia/settings.toml ]] && cp ~/.local/state/noctalia/settings.toml ~/.config/home-manager/dotfiles/.local/state/noctalia/settings.toml
 
     # Unstage everything so I can manually choose what to save
     git reset .
