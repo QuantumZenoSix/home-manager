@@ -168,7 +168,7 @@ Every command-line tool the Arch install path sets up, grouped by job, with what
 
 | Command | Package (source) | Purpose | Common usage |
 | --- | --- | --- | --- |
-| `nvim` | `neovim` (pacman) | Main editor (plugins documented in `nvim_plugins.md`) | alias `nv` · `fv` (fzf → nvim) · `nvim-custom` (alternate config via `NVIM_APPNAME`) |
+| `nvim` | `neovim` (pacman) | Main editor (plugins documented in `nvim_plugins.md`) | alias `nv` · `fv` (fzf → nvim) |
 | `vim`, `vimdiff` | `vim` (pacman) | Classic Vim (uses `dotfiles/.vimrc`) | `vim file` · `vimdiff a b` |
 | `xxd` | `vim` (pacman) | Hex dump and reverse | `xxd file \| less` · `xxd -r dump > file` |
 | `vi`, `ex`, `view` | `vi` (pacman) | POSIX vi | `vi file` |

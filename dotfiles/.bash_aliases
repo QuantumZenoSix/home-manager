@@ -60,19 +60,9 @@ alias lzq="lazysql"
 
 
 
-# SSH/SCP
-alias qc='quickconnect'
-alias scpdownloads='cd /mnt/c/Users/BobbyValenzuela/OneDrive\ -\ Probax/Documents/SCP-Downloads'
-
-alias reposync_thisdir_to_alpha="reposync . alpha ongoing"
-
-# My Main nvim install is a lazyvim dist - adding an alias to my custom install (~/.config/nvim-custom/)
-alias nvim-custom='NVIM_APPNAME="nvim-custom" nvim'
-
 # thefuck alias
 # eval $(thefuck --alias redo)
 
-alias cdev="cd $HOME/Documents/Repos/Dev-Environment/"
 
 
 
@@ -82,7 +72,6 @@ alias up="nx_up"
 
 # Read arch news in cli (cachy)
 alias news="cachy-update -n"
-alias archeck="informant list"
 
 
 
@@ -94,11 +83,6 @@ y() {
 	IFS= read -r -d '' cwd < "$tmp"
 	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
 	rm -f -- "$tmp"
-}
-
-tt(){
-   cd ~/my_repos/Tomahawk/
-   ~/my_repos/Tomahawk/tomahawk
 }
 
 alias serve="python3 -m http.server 8000"

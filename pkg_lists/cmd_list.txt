@@ -4,7 +4,7 @@
 #   GROUP = broad use; `cf` shows items grouped under these headings
 # Blank lines and lines starting with '#' are ignored.
 
-# ── BSH: my functions & aliases ──────────────────────────────
+# ── BSH: my functions & aliases ─────────────────────────────
 
 BSH | Git | gt_add_ssh_key_and_push | (alias) Loads SSH agent/key then pushes to Git.
 BSH | Git | gt_apply_stash_by_name | Applies a Git stash by its descriptive name.
@@ -18,33 +18,43 @@ BSH | Git | gt_set_connection_to_ssh | Converts HTTPS remote URL to SSH (GitHub/
 BSH | Git | gt_set_sshkey | Configures a specific SSH key for the current Git repo.
 BSH | Git | gt_show_merges | (alias) Shows recent merges with DEV- ticket pattern.
 BSH | Git | gt_stage_and_commit | Stages all changes and commits with a message.
+BSH | Git | lg | (alias) lazygit (also `gg`).
 
 BSH | Docker | dk_add_user_to_docker_group | Adds $USER to the docker group and restarts docker.
 BSH | Docker | dk_arch | Launches an Arch Linux Docker container with basic tools installed.
 BSH | Docker | dk_enter_smb_container | Enters a running Samba Docker container via exec.
 BSH | Docker | dk_force_old_version | Sets DOCKER_API_VERSION to 1.43 for compatibility.
 BSH | Docker | dk_ubuntu | Launches an Ubuntu 24.04 Docker container with tools and sudo.
+BSH | Docker | lzd | (alias) lazydocker.
 
 BSH | Nix & Home Manager | nx_make_dev_flake | Creates a basic Nix devShell flake + direnv.
 BSH | Nix & Home Manager | nx_remove_home_manager | Uninstalls and cleans up Home Manager.
 BSH | Nix & Home Manager | nx_up | Updates Home Manager flake, applies changes, and backs up configs.
+BSH | Nix & Home Manager | up | (alias) nx_up.
 
 BSH | Neovim | nv_clear_lockfile | Removes deployed Neovim lazy-lock.json (and .backup copies) before a HM switch.
 BSH | Neovim | nv_clear_swaps | Removes Neovim swap files.
 BSH | Neovim | nv_edit_conf | Opens Neovim config directory in nvim.
 BSH | Neovim | nv_update_lazy | Builds and installs latest stable Neovim from source.
 
+BSH | Niri & desktop | nr_restart_noctalia | Restarts the Noctalia shell (qs -c noctalia-shell).
+
+BSH | Shell & prompt | cf_beta | Old command finder: fzf over every nx_/gt_/nv_/dk_/ut_ command.
+BSH | Shell & prompt | ch | (alias) cht.sh cheat sheets: `ch tar`, `ch python/lambda`.
 BSH | Shell & prompt | ps1_ohmyposh | Switches shell to Oh My Posh prompt.
 BSH | Shell & prompt | ps1_powerline | Switches shell to Powerline prompt.
 BSH | Shell & prompt | ps1_starship | Switches shell to Starship prompt.
 BSH | Shell & prompt | ut_o_tmux_init | Runs tmux init script and attaches to Main session.
 
+BSH | SSH & networking | lzs | (alias) lazyssh TUI for ~/.ssh/config hosts.
+BSH | SSH & networking | serve | (alias) Serve the current directory over HTTP on port 8000.
 BSH | SSH & networking | ut_o_taildrop_to_phone | Taildrop a file to phone.
 BSH | SSH & networking | ut_ssh_make_key | Generates Ed25519 SSH key with comment.
 BSH | SSH & networking | ut_ssh_reload_key | Restarts SSH agent and adds default key.
 BSH | SSH & networking | ut_sys_view_incoming_requests | Captures incoming TCP traffic on a port (default 22).
 BSH | SSH & networking | ut_ufw_only_allow_tailscale | Configures ufw to allow inbound only on tailscale0.
 
+BSH | System & hardware | news | (alias) Show Arch/CachyOS news (cachy-update -n).
 BSH | System & hardware | ut_o_clear_log_files | Truncates logs and vacuums journal.
 BSH | System & hardware | ut_o_create_systemd_service | Interactive wizard to create a systemd service + timer.
 BSH | System & hardware | ut_sys_change_pop_graphics | Switches System76 graphics mode (low/med/high).
@@ -60,8 +70,15 @@ BSH | Text & documents | ut_o_colorme | Syntax highlights input with pygmentize.
 BSH | Text & documents | ut_txt_docx_to_md | Converts .docx to Markdown with pandoc (media extraction).
 BSH | Text & documents | ut_txt_list_difference | Shows lines in file2 not present in file1.
 
-BSH | Files & sync | ut_o_move_conflicted_files | Move local conflicted syncthing files to a .conflicts folder.
+BSH | Files, search & sync | f | (alias) fd: regex, hidden files, depth 10.
+BSH | Files, search & sync | ff | (alias) fzf in a compact bordered popup.
+BSH | Files, search & sync | fv | (alias) fzf-pick a file and open it in nvim.
+BSH | Files, search & sync | l | (alias) eza.
+BSH | Files, search & sync | r | (alias) rg including hidden files.
+BSH | Files, search & sync | ut_o_move_conflicted_files | Move local conflicted syncthing files to a .conflicts folder.
+BSH | Files, search & sync | y | yazi that cd's into the directory you quit in.
 
+BSH | Dev & AI | lzq | (alias) lazysql.
 BSH | Dev & AI | ut_o_create_avante_md | Creates project instructions file for Avante AI.
 BSH | Dev & AI | ut_o_run_ollama_webui | Pulls and runs the Open WebUI container on port 3000.
 BSH | Dev & AI | ut_o_uv_init | Initializes uv Python project, venv, and activates it.
@@ -69,7 +86,7 @@ BSH | Dev & AI | ut_o_uv_init | Initializes uv Python project, venv, and activat
 BSH | WSL | ut_wsl_cp | Copies files between WSL and Windows host directories.
 BSH | WSL | ut_wsl_get_diskusage | Runs ncdu on filesystem excluding /mnt.
 
-# ── CMD: packages & tools ────────────────────────────────────
+# ── CMD: packages & tools ───────────────────────────────────
 
 CMD | System monitoring | btop | Modern colorful resource monitor (TUI)
 CMD | System monitoring | fastfetch | Fast system information tool (neofetch successor)
@@ -82,7 +99,9 @@ CMD | Disk & storage | darya | Fast TUI disk usage explorer with live treemap
 CMD | Disk & storage | duf | Modern disk usage viewer (`df` alternative)
 CMD | Disk & storage | dust | Modern visual disk usage tool (`du` alternative)
 CMD | Disk & storage | dysk | Modern disk usage viewer with nice visuals
+CMD | Disk & storage | fusermount | FUSE v2, unmount FUSE mounts / run AppImages (pkg: fuse2)
 CMD | Disk & storage | lsscsi | List SCSI devices
+CMD | Disk & storage | mount.cifs | Mount Windows/Samba shares (pkg: cifs-utils)
 CMD | Disk & storage | smartctl | Disk health monitoring (S.M.A.R.T.)
 
 CMD | Hardware & power | bluetoothctl | Bluetooth tool
@@ -92,65 +111,129 @@ CMD | Hardware & power | dmidecode | DMI/SMBIOS hardware information tool
 CMD | Hardware & power | hwdetect | Hardware detection script
 CMD | Hardware & power | hwinfo | Detailed hardware information tool
 CMD | Hardware & power | nvidia-smi | View/change NVIDIA driver settings
+CMD | Hardware & power | sensors | CPU and board temperatures and fans (pkg: lm-sensors)
 CMD | Hardware & power | switcherooctl | Hybrid GPU switching support (pkg: switcheroo-control)
 CMD | Hardware & power | tlp | Laptop power management
 CMD | Hardware & power | upower | Power management abstraction
+CMD | Hardware & power | vainfo | Check VA-API hardware video decoding (pkg: libva-utils)
 
-CMD | Networking & remote | xfreerdp3 | RDP client (pkg: freerdp)
+CMD | Networking & remote | curl | HTTP client and downloader
+CMD | Networking & remote | dig | DNS lookups (also `host`, `nslookup`) (pkg: dnsutils)
+CMD | Networking & remote | ip | Network config: addresses, routes, links (pkg: iproute2)
+CMD | Networking & remote | iw | Wireless device config
+CMD | Networking & remote | lazyssh | TUI SSH host manager (reads ~/.ssh/config)
 CMD | Networking & remote | netctl | Arch command-line network manager
+CMD | Networking & remote | netstat | Legacy network tools (also ifconfig, arp, route) (pkg: net-tools)
 CMD | Networking & remote | nmcli | Command-line network manager
+CMD | Networking & remote | openssl | TLS and crypto toolkit
+CMD | Networking & remote | remmina | RDP/VNC client (GUI)
+CMD | Networking & remote | scp | Copy files over SSH (also `sftp`) (pkg: openssh)
 CMD | Networking & remote | smbclient | Samba client for accessing Windows/SMB network shares
 CMD | Networking & remote | snitch | Network Monitoring/listening notification tool
+CMD | Networking & remote | ss | Socket stats, e.g. `ss -tulpn` for listening ports (pkg: iproute2)
+CMD | Networking & remote | ssh | Remote shell (pkg: openssh)
+CMD | Networking & remote | ssh-copy-id | Install your public key on a remote host (pkg: openssh)
+CMD | Networking & remote | ssh-keygen | Create/manage SSH keys (pkg: openssh)
 CMD | Networking & remote | sshfs | SSH filesystem client
 CMD | Networking & remote | sshpass | Non-interactive SSH password tool
 CMD | Networking & remote | tailscale | Mesh VPN (WireGuard based)
 CMD | Networking & remote | tcpdump | Network packet analyzer
 CMD | Networking & remote | termshark | Terminal interface for Wireshark
+CMD | Networking & remote | tshark | Network protocol analyzer, Wireshark CLI (pkg: wireshark-cli)
 CMD | Networking & remote | ufw | Uncomplicated Firewall
 CMD | Networking & remote | wget | Non-interactive network downloader
-CMD | Networking & remote | tshark | Network protocol analyzer, Wireshark CLI (pkg: wireshark-cli)
 CMD | Networking & remote | wpa_supplicant | Wi-Fi authentication daemon
+CMD | Networking & remote | xfreerdp3 | RDP client (pkg: freerdp)
 
-CMD | Audio & video | playerctl | Media player controller
-CMD | Audio & video | spotify_player | Spotify client, TUI (pkg: spotify-player)
-CMD | Audio & video | sxiv | Simple X image viewer (GUI)
-CMD | Audio & video | wiremix | Audio device monitoring tool
-CMD | Audio & video | yt-dlp | YouTube/video downloader
+CMD | Audio, video & images | cd-info | CD / Blu-ray disc info (also `bd_info`) (pkg: libcdio, libbluray)
+CMD | Audio, video & images | chafa | Render images as text in the terminal
+CMD | Audio, video & images | ffmpeg | Convert/inspect/play audio and video (also ffprobe, ffplay)
+CMD | Audio, video & images | img2txt | Color ASCII-art images (also `cacaview`) (pkg: libcaca)
+CMD | Audio, video & images | magick | Image convert, resize, compose (pkg: imagemagick)
+CMD | Audio, video & images | pavucontrol | Volume and audio-device GUI
+CMD | Audio, video & images | playerctl | Media player controller
+CMD | Audio, video & images | qview | Minimal Qt image viewer (GUI)
+CMD | Audio, video & images | rubberband | Time-stretch and pitch-shift audio
+CMD | Audio, video & images | spotify_player | Spotify client, TUI (pkg: spotify-player)
+CMD | Audio, video & images | sxiv | Simple X image viewer (GUI)
+CMD | Audio, video & images | wiremix | Audio device monitoring tool
+CMD | Audio, video & images | yt-dlp | YouTube/video downloader
+
+CMD | Desktop & Wayland | cliphist | Wayland clipboard history
+CMD | Desktop & Wayland | font-manager | Font browser (GUI)
+CMD | Desktop & Wayland | gpu-screen-recorder | Low-overhead GPU screen recording
+CMD | Desktop & Wayland | wl-copy | Wayland clipboard copy (also `wl-paste`) (pkg: wl-clipboard)
+CMD | Desktop & Wayland | wlsunset | Night-mode colour temperature for Wayland (pkg: wlsunset-git)
+CMD | Desktop & Wayland | wtype | Type text into the focused Wayland window
+CMD | Desktop & Wayland | xclip | X11 clipboard from the CLI
+CMD | Desktop & Wayland | xsel | X11 clipboard (alternative)
+
+CMD | Gaming | gamescope | Gaming micro-compositor
+CMD | Gaming | mangohud | FPS / performance overlay
+CMD | Gaming | winetricks | Install Windows DLLs/fonts into Wine prefixes
 
 CMD | Git | git | Distributed version control system
 CMD | Git | lazygit | Terminal UI for Git
 CMD | Git | oy | Git diff viewer with step-through capabilities (pkg: oyo)
 
+CMD | Containers | dcv | Docker Compose viewer TUI (pkg: tokuhirom/dcv)
 CMD | Containers | docker | Container platform
 CMD | Containers | docker-compose | Multi-container Docker orchestration
 CMD | Containers | lazydocker | Terminal UI for Docker
 
+CMD | Dev & languages | cargo | Rust build tool / package manager (pkg: rustup)
 CMD | Dev & languages | go | Go programming language toolchain
+CMD | Dev & languages | isql | ODBC SQL shell (also `odbcinst`) (pkg: unixodbc)
 CMD | Dev & languages | lazysql | Terminal UI for SQL databases
+CMD | Dev & languages | lua | Lua interpreter (also `luac`)
+CMD | Dev & languages | node | Node.js LTS (pkg: nodejs-lts-jod)
 CMD | Dev & languages | npm | Node.js package manager
 CMD | Dev & languages | nvm | Node Version Manager
 CMD | Dev & languages | perl | Perl programming language
+CMD | Dev & languages | pnpm | Disk-efficient Node package manager
 CMD | Dev & languages | posting | HTTP client / API tester (GUI)
+CMD | Dev & languages | python3 | Python
+CMD | Dev & languages | rustup | Rust toolchain manager
+CMD | Dev & languages | tree-sitter | Parser generator used by nvim-treesitter (pkg: tree-sitter-cli)
 CMD | Dev & languages | uv | Fast Python package manager
+
+CMD | Build & compilers | clang | LLVM C/C++ compilers (also `clang++`)
+CMD | Build & compilers | clang-format | C/C++ formatter (pkg: clang)
+CMD | Build & compilers | clang-tidy | C/C++ linter (pkg: clang)
+CMD | Build & compilers | clangd | C/C++ language server (pkg: clang)
+CMD | Build & compilers | cmake | Build-system generator (also `ctest`)
+CMD | Build & compilers | gcc | GNU C/C++ compilers (also `g++`)
+CMD | Build & compilers | llvm-objdump | LLVM toolchain utilities (llvm-*, opt, llc) (pkg: llvm)
+CMD | Build & compilers | make | Build from a Makefile
+CMD | Build & compilers | nasm | x86 assembler
+CMD | Build & compilers | ninja | Fast build backend
+CMD | Build & compilers | objdump | Inspect binaries: objdump, nm, readelf, strings, strip, ld (pkg: binutils)
+CMD | Build & compilers | pkg-config | Compiler/linker flags for libraries (pkg: pkgconf)
 
 CMD | Editors & terminal | nvim | Modern extensible text editor (pkg: neovim)
 CMD | Editors & terminal | tmux | Terminal multiplexer
+CMD | Editors & terminal | vi | POSIX vi
 CMD | Editors & terminal | vim | Classic text editor
 CMD | Editors & terminal | x | x-cmd command-line tool suite (pkg: x-cmd)
+CMD | Editors & terminal | xxd | Hex dump and reverse (pkg: vim)
 
 CMD | Files & search | 7z | High compression file archiver (pkg: 7zip)
+CMD | Files & search | bzip2 | .bz2 compression (also `bunzip2`)
 CMD | Files & search | fd | Fast, simple and user-friendly alternative to find
 CMD | Files & search | fzf | Command-line fuzzy finder
 CMD | Files & search | plocate | Fast locate implementation
 CMD | Files & search | rg | Fast grep alternative (pkg: ripgrep)
+CMD | Files & search | tar | Create and extract tarballs
 CMD | Files & search | tree | Directory tree listing
 CMD | Files & search | unzip | ZIP file extractor
 CMD | Files & search | yazi | Fast terminal file manager
 
 CMD | Backup & sync | restic | Fast and secure backup program
 CMD | Backup & sync | rsync | File synchronization tool
+CMD | Backup & sync | snapper | Btrfs snapshots (auto-snapshot on pacman transactions)
 CMD | Backup & sync | syncthing | Continuous file synchronization
 
+CMD | Docs & data viewers | basalt | TUI for reading Obsidian vaults (pkg: basalt-tui)
 CMD | Docs & data viewers | csvlens | Terminal CSV viewer
 CMD | Docs & data viewers | doxx | .docx viewer
 CMD | Docs & data viewers | glow | Markdown renderer for the terminal
@@ -158,9 +241,29 @@ CMD | Docs & data viewers | jless | Terminal JSON viewer
 CMD | Docs & data viewers | jq | Lightweight command-line JSON processor
 CMD | Docs & data viewers | less | Advanced file pager
 CMD | Docs & data viewers | pandoc | Universal document converter (pkg: pandoc-cli)
+CMD | Docs & data viewers | pdftotext | PDF utilities: pdftotext, pdftoppm, pdfunite, pdfinfo (pkg: poppler)
+CMD | Docs & data viewers | pygmentize | Syntax highlighter (pkg: python-pygments)
 CMD | Docs & data viewers | treemd | Markdown tree viewer
 
+CMD | Package management | flatpak | Sandboxed apps from Flathub
+CMD | Package management | makepkg | Build Arch/AUR packages (pkg: base-devel)
+CMD | Package management | pacman | Arch package manager
+CMD | Package management | paru | AUR helper that ships with CachyOS
+CMD | Package management | yay | AUR helper (same flags as pacman)
+
+CMD | Shell utilities | awk | Column and text processing (pkg: gawk)
+CMD | Shell utilities | bash | Fallback shell and script interpreter
+CMD | Shell utilities | bat | cat with syntax highlighting and git markers
 CMD | Shell utilities | bc | Arbitrary precision calculator
+CMD | Shell utilities | direnv | Per-directory env vars from .envrc
+CMD | Shell utilities | entr | Run a command whenever watched files change
+CMD | Shell utilities | envsubst | Fill $VARS in a template (pkg: gettext)
+CMD | Shell utilities | fish | Alternate shell
+CMD | Shell utilities | gum | Pretty prompts/spinners for shell scripts
+CMD | Shell utilities | man | Manual pages (also `apropos`)
+CMD | Shell utilities | p10k | Powerlevel10k prompt theme (`p10k configure`)
 CMD | Shell utilities | pv | Pipe viewer (progress bar for pipes)
+CMD | Shell utilities | sed | Stream editor
 CMD | Shell utilities | sudo | Superuser privilege tool
 CMD | Shell utilities | which | Locate command path
+CMD | Shell utilities | zsh | Main interactive shell

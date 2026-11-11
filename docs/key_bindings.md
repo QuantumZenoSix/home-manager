@@ -142,9 +142,6 @@ nix_make_dev_flake -
 | Custom                    | `postboy`                     | [custom] Simple CLI-based API tool                        |                                   |
 | Custom                    | `posting`                     | Postman in CLI                                            |                                   |
 | Custom                    | `posty`                       | [custom] Wrapper for posting with saved collections       |                                   |
-| Custom                    | `qc` / `quickconnect`         | [custom] quickconnect - ssh and rdp in cli                |                                   |
-| Custom                    | `reposync`                    | [custom] ------- SEARCH repo synchronization tool         |                                   |
-| Custom                    | `scpdownloads`                | [custom] cd ~/Documents/SCP-Downloads                     |                                   |
 | Custom                    | `spf`                         | (custom script - possibly SPF checker or sender policy framework tool) |                                   |
 | Custom                    | `sqlcmd`                      | Microsoft SQL Server command-line query tool              |                                   |
 | Custom                    | `ssh_keyupdate`               | [custom] (complex ssh-agent + ssh-add command)            |                                   |
@@ -253,7 +250,6 @@ nix_make_dev_flake -
 | Nvim                      | `edit_nvim_conf`              | [custom] - open nvim in ~/.config/nvim/                   |                                   |
 | Nvim                      | `nv`                          | NVIM_APPNAME=nvim-lazy nvim                               |                                   |
 | Nvim                      | `nvim`                        | Neovim text editor                                        |                                   |
-| Nvim                      | `nvim-custom`                 | [custom] NVIM_APPNAME="nvim-custom" nvim                  |                                   |
 | Nvim                      | `clear_nvim_swaps`            | [custom] self-explanatory                                 |                                   |
 | Nvim                      | `fv`                          | fuzzy find a file to open with nvim                       |                                   |
 
@@ -268,7 +264,6 @@ nix_make_dev_flake -
 | PBX [custom]              | `prod_scratch`                | /usr/bin/perl /home/control-io/www/DevSandbox/Sandbox/_templates/prod_scratch.pl |                                   |
 | PBX [custom]              | `rl`                          | tail -f /home/control-io/www/log/templog                  |                                   |
 | PBX [custom]              | `rl2`                         | tail -f /home/control-io/www/log/templog2                 |                                   |
-| PBX [custom]              | `reposync_thisdir_to_alpha`   | reposync . alpha ongoing                                  |                                   |
 | PBX [custom]              | `restarthive.sh`              | (custom script - likely restarts a Hive service)          |                                   |
 | PBX [custom]              | `restart_hive`                |                                                           |                                   |
 | PBX [custom]              | `perlygrep`                   |                                                           |                                   |
