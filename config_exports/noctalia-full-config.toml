@@ -33,22 +33,21 @@ order = [ "Primary" ]
     capsule_padding = 6.0
     capsule_radius = 5.0
     capsule_thickness = 0.75999999046325684
-    center = [ "workspaces" ]
+    center = [ "group:g4" ]
     compositor_blur = true
     concave_edge_corners = true
     contact_shadow = false
     enabled = true
     end = [
         "group:g2",
-        "group:g3",
         "notifications",
         "network",
         "bluetooth",
         "volume",
         "brightness",
-        "battery",
+        "group:g1",
         "control-center",
-        "clock",
+        "group:g3",
         "session"
     ]
     font_scale = 1.0
@@ -72,7 +71,7 @@ order = [ "Primary" ]
     show_on_workspace_switch = true
     show_tooltip = true
     smart_auto_hide = false
-    start = [ "launcher", "wallpaper", "media", "audio_visualizer" ]
+    start = [ "media", "audio_visualizer" ]
     thickness = 35
     widget_spacing = 6
 
@@ -86,7 +85,7 @@ order = [ "Primary" ]
         enabled = true
         fill = "surface_container"
         id = "g2"
-        members = [ "tray", "status", "mini-docker", "bar", "bar_2", "status_2", "bar_3" ]
+        members = [ "tray", "status", "mini-docker", "bar", "bar_2", "status_2", "bar_3", "bar_4" ]
         opacity = 1.0
         padding = 6.0
 
@@ -96,10 +95,35 @@ order = [ "Primary" ]
         border_width = 1.0
         enabled = true
         fill = "surface_container"
-        id = "g3"
-        members = [ "screenshot", "recorder", "widget" ]
+        id = "g1"
+        members = [ "battery", "sysmon" ]
         opacity = 1.0
         padding = 6.0
+        radius = 5.0
+
+        [[bar.Primary.capsule_group]]
+        accordion = true
+        accordion_direction = "end"
+        border_width = 1.0
+        enabled = true
+        fill = "surface_container"
+        id = "g4"
+        members = [ "workspaces", "screenshot", "widget", "recorder", "wallpaper", "keybinds" ]
+        opacity = 1.0
+        padding = 6.0
+        radius = 5.0
+
+        [[bar.Primary.capsule_group]]
+        accordion = true
+        accordion_direction = "end"
+        border_width = 1.0
+        enabled = true
+        fill = "surface_container"
+        id = "g3"
+        members = [ "clock", "bar_5" ]
+        opacity = 1.0
+        padding = 6.0
+        radius = 5.0
 
 [battery]
 warning_threshold = 10
@@ -431,7 +455,6 @@ enabled = [
     "nightwatch75/file-search",
     "noctalia/bitwarden",
     "8bury/mini-docker",
-    "cleboost/ssh-launcher",
     "rylos/usb-manager",
     "notfinaldev/web-search",
     "alexander/screen-toolkit",
@@ -442,7 +465,8 @@ enabled = [
     "rylos/remmina",
     "weinguyen/shell-command",
     "3dprogramin/ufw",
-    "0rgl/ask-claude"
+    "0rgl/ask-claude",
+    "cleboost/ssh-launcher"
 ]
 
     [[plugins.source]]
@@ -782,6 +806,12 @@ type = "rylos/syncthing:bar"
 hide_when_empty = false
 type = "rylos/usb-manager:bar"
 
+[widget.bar_4]
+type = "riversyx/noctaproton-vpn:bar"
+
+[widget.bar_5]
+type = "yuuto/calculator:bar"
+
 [widget.battery]
 display_mode = "graphic"
 type = "battery"
@@ -789,6 +819,10 @@ type = "battery"
 [widget.brightness]
 enabled = false
 type = "brightness"
+
+[widget.clock]
+format = "{:%-I:%M %p}"
+type = "clock"
 
 [widget.control-center]
 enabled = false
@@ -805,6 +839,9 @@ type = "clock"
 [widget.input_volume]
 device = "input"
 type = "volume"
+
+[widget.keybinds]
+type = "kenn/keybind-cheatsheet:keybinds"
 
 [widget.keyboard_layout]
 hide_when_single_layout = false
@@ -879,10 +916,6 @@ type = "sysmon"
 drawer = true
 hide_passive = false
 type = "tray"
-
-[widget.wallpaper]
-enabled = false
-type = "wallpaper"
 
 [widget.widget]
 type = "alexander/screen-toolkit:widget"
