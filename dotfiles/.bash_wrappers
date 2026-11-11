@@ -283,6 +283,10 @@ dk_enter_smb_container(){
 }
 
 
+dk_add_user_to_docker_group(){
+    sudo usermod -aG docker $USER
+    sudo systemctl restart docker
+}
 
 # ────────────────────────────────────────────────
 #             Neovim ('nv_')
