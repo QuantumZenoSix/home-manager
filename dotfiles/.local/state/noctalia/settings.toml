@@ -158,7 +158,9 @@ font_family = "Arabic Newspaper"
 time_format = "{:%-I:%M %p}"
 
     [shell.launcher]
+    default_view = "all"
     pinned = [ "brave-origin-nightly", "spotify" ]
+    sort_by_usage = false
 
     [shell.screenshot]
     directory = "/home/zeno/Pictures/Screenshots"

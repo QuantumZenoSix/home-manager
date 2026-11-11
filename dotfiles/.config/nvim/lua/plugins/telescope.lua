@@ -20,6 +20,12 @@ return {
       telescope.setup {
         defaults = {
           -- Global settings for all pickers
+          -- Telescope's default rg args plus --hidden (skipping .git) so live_grep/grep_string search dotfiles
+          vimgrep_arguments = {
+            'rg', '--color=never', '--no-heading', '--with-filename',
+            '--line-number', '--column', '--smart-case',
+            '--hidden', '--glob', '!**/.git/*',
+          },
           sorting_strategy = "ascending", -- This moves the selected match to the top
           layout_strategy = 'horizontal',
           layout_config = {
@@ -43,14 +49,15 @@ return {
             --},
           --},
         },
-        --pickers = {
+        pickers = {
+          find_files = { hidden = true },
           --live_grep = {
             --theme = 'cursor', -- Apply dropdown theme to live_grep
             --layout_config = {
               --height = 0.7, -- Adjust height for dropdown theme
             --},
           --},
-        --},
+        },
       }
 
       local builtin = require('telescope.builtin')
