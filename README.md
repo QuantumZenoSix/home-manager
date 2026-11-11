@@ -1,4 +1,4 @@
-# Dev Environment
+# Home Manager
 
 My entire dev environment setup via one command.  
 
