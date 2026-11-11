@@ -5,7 +5,7 @@ My entire dev environment setup via one command.
 <br />
 
 ```bash
-bash -c "$(wget -qO- https://raw.githubusercontent.com/QuantumZenoSix/dev-environment/main/scripts/utils/start.sh -O -)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/QuantumZenoSix/home-manager/main/scripts/utils/start.sh -O -)"
 ```  
 
 
