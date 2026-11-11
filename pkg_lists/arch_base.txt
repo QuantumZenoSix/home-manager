@@ -83,6 +83,7 @@ docker-compose    # docker-compose-plugin: Docker compose
 entr              # entr ─ super useful file watcher (needed for tmux autoreload)
 fastfetch         # fastfetch: System info
 fd                # → fd
+termshark         # wireshark cli
 unixodbc          # unixodbc-dev: ODBC 
 tcpdump
 
