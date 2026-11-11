@@ -53,6 +53,21 @@ _Note: This is designed for Arch Linux/Arch-based distros though I've done some 
 
 <br />
 
+#### My current setup
+- __Desktop__: CachyOS (Arch-based distro)
+- __Display protocol__: Wayland
+- __Window Manager__: Niri
+- __Desktop Shell__: Noctalia
+- __Shell__: ZSH
+- __Editor__: Neovim
+- __Terminal__: Wezterm
+- __Multiplexer__: TMUX (though WezTerm's built-in is pretty good)
+- __Dotfile manager__: Nix home-manager (also use nix for dev shells)
+
+
+
+<br />
+
 ## ⚙️ What do the configuration files give me?
 
 - Customized Vim/Neovim configuration (includes a [colorscheme](https://github.com/QuantumZenoSix/gothic-cyberpunk.vim) I made)
