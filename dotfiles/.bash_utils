@@ -183,6 +183,14 @@ ut_sys_update_nvidia_drivers_arch(){
     nvidia-smi
 }
 
+ut_ufw_only_allow_tailscale(){
+    sudo ufw allow in on tailscale0
+    sudo ufw default allow outgoing
+    sudo ufw enable
+    sudo ufw reload
+    sudo ufw status verbose
+    tailscale status
+}
 
 
 # ────────────────────────────────────────────────
