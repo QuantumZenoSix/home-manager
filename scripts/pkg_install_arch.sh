@@ -214,6 +214,9 @@ echo "[+] Enabling Docker service..."
 $SUDO  systemctl enable docker
 $SUDO  systemctl start docker
 
+# Add user to docker group and refresh
+$SUDO usermod -aG docker $USER 
+newgrp docker
 
 
 echo "[+] Installing Docker Compose Viewer (dcv)..."
