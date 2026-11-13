@@ -512,6 +512,39 @@ ut_o_run_ollama_webui(){
 
 alias ollama_webui="ut_o_run_ollama_webui"
 
+ut_o_openvpn(){
+    local VPN_FILE=~/Documents/PBX/vpn/openvpn_bobby.valenzuela.ovpn
+    local PROFILE_NAME='bobby.valenzuela'
+    local CONNECTION_EXISTS=$(nmcli connection show | grep 'openvpn_bobby.valenzuela' | wc -l)
+
+    if [[ ${CONNECTION_EXISTS} -eq 0 ]];then
+        echo "No connection, creating one..."
+
+        if [[ -s $VPN_FILE ]];then
+            nmcli connection import type openvpn file $VPN_FILE
+            nmcli connection modify "openvpn_bobby.valenzuela" vpn.user-name "bobby.valenzuela"
+            nmcli connection modify "openvpn_bobby.valenzuela" +vpn.secrets ""
+            nmcli connection modify "openvpn_bobby.valenzuela" +vpn.data "password-flags=2"
+        else
+            echo "No VPN file found at: $VPN_FILE"
+            return 1
+        fi
+
+    fi
+
+    # Connect/disconnect
+    if [[ "${1}" == "off" ]]; then
+        nmcli connection down "openvpn_bobby.valenzuela"
+    else
+        nmcli --ask connection up "openvpn_bobby.valenzuela"
+    fi
+
+
+}
+
+
+alias openvpn="ut_o_openvpn"
+
 # == FD
 # replace img
 # fd --regex --max-depth=10 --min-depth=0 'ML.md$' -x sed -i -r  's/<img\s*?src="([^"]+)"\s*?style=(\S|\s)*$/\!\[\]\(\1\)/g' '{}'
