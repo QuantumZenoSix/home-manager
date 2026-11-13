@@ -302,6 +302,9 @@ printf "\n[+] Installing sddm loging manager (astronaut)\n\n"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
 
 
+printf "\n[+] Installing DBeaver (database manager)\n\n"
+flatpak install  -y --noninteractive flathub io.dbeaver.DBeaverCommunity
+
 # FOR KDE ONLY - MESSES UP NIRI/NOCTALIA/SDDM SETUP
 # printf "\n[+] Installing archlinux-tweak-tool-git (optional)\n\n"
 # paru -S archlinux-tweak-tool-git
