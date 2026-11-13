@@ -424,13 +424,13 @@ if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
 
         printf "[+] Dry run complete! Review results. \n\nLive run will execute in 20s if this script isn't aborted with Ctrl+c\n\n"
         sleep 20
-        . ./scrips/pop_os_setup/desktop-apps.sh 0
+        . ./scripts/pop_os_setup/desktop-apps.sh 0
 
         echo "[+] Installing additional packages for gaming/graphics updates"
         . ./scripts/pop_os_setup/gaming.sh
 
         echo "[+] Running housekeeping tasks"
-        . .scripts./pop_os_setup/housekeeping.sh
+        . ./scripts/pop_os_setup/housekeeping.sh
 
 
     elif [ "${OPTION}" = "cachy" ]; then
@@ -453,22 +453,6 @@ if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
         $SUDO cp -r ./config_exports/usr_share_sddm_themes/* /usr/share/sddm/themes
 
 
-        MSG="
-        ### Post-Install Todos
-        - Copy Login Screen Files (/usr/share/sddm/themes/ and /etc/sddm.conf.d/) [Should be done - just confirm]
-        - Copy Niri config (~/.config/niri ~/.local/state/noctalia/settings.toml) [Should be done - just confirm]
-        - Connect to tailscale
-        - Connect to samba share (ada-pi)
-        - Connect to syncthing for Obsdian notes
-
-        ### Desktop todos
-        - Run 'qt6ct' and 'kvantummanager' to configure theme for qt apps
-        - Confirm running with 'ps aux | grep xdg-desktop-portal'
-        - or start it manually:
-            /usr/lib/xdg-desktop-portal &
-            /usr/lib/xdg-desktop-portal-gtk &
-        "
-
     fi
 
 fi
@@ -480,11 +464,43 @@ if [ "${INSTALL_TYPE}" = "full" ] || [ "${INSTALL_TYPE}" = "configonly" ]; then
     # echo "→ You may need to log out/in or simply run 'zsh'"
     # Just load a new shell to get going instead - not much overhead
 
+    # Todos:
+    # Copy Login Screen Files (/usr/share/sddm/themes/ and /etc/sddm.conf) [Should be done - just confirm]
+    # Copy Niri config (~/.config/{niri,noctalia,Kvantum,shelly}, ~/.local/state/noctalia/settings.toml) [Should be done - just confirm]
+
+    README="$HOME/POST_INSTALL_README.md"
+
+    cat > "$README" <<'EOF'
+### Post-Install Todos
+- Connect to tailscale
+- Connect to samba share (ada-pi)
+- Connect to syncthing for Obsidian notes
+EOF
+
+    if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
+        cat >> "$README" <<'EOF'
+
+### Desktop todos
+- Set Wallpaper
+- Run `qt6ct` and `kvantummanager` to configure theme for qt apps
+- Run "Monique" for multi-monitor setup
+- Confirm portals are running: `ps aux | grep xdg-desktop-portal`
+- Or start them manually:
+
+      /usr/lib/xdg-desktop-portal &
+      /usr/lib/xdg-desktop-portal-gtk &
+EOF
+    fi
+
+    cat "$README"
+    printf "\n→ Saved to %s\n\n" "$README"
+
     if command -v zsh &> /dev/null; then
         zsh
     else
         echo "→ zsh is not installed. To utilize zsh features install zsh."
     fi
+
 else
 
     printf "\n\n\n"
