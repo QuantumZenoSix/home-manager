@@ -115,7 +115,7 @@ set_login_shell_zsh(){
                 echo "[+] Current login shell: ${current_shell:-not found}"
                 echo "[+] Changing login shell to zsh... (may prompt for password)"
                 
-                if chsh -s "$(command -v zsh)"; then
+                if chsh -s /usr/bin/zsh; then
                     echo "→ Login shell updated (takes effect in new sessions)"
                 else
                     echo "→ chsh failed – try running it manually"
