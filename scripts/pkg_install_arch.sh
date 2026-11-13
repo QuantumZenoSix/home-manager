@@ -9,7 +9,8 @@ echo "# ────────────────────────
 cd ~/.config/home-manager
 
 # GLOBALS
-AUR="yay -S --needed " 
+# --answerclean/--answerdiff pre-answer yay's menus, which `yes |` can't get past (they want N/A, not y)
+AUR="yay -S --needed --noconfirm --answerclean None --answerdiff None "
 PACMAN="$SUDO pacman -S --needed "
 FILE="./pkg_lists/arch_base.txt"
 
@@ -243,7 +244,7 @@ sudo tailscale set --operator=$CALLING_USER
 
 # 1. Modern / recommended (PipeWire + official package)
 $PACMAN spotify-player --noconfirm  
-$PACMAN libsixel-player --noconfirm  
+$PACMAN libsixel --noconfirm  
 $PACMAN pavucontrol --noconfirm   # pavucontrol still works via pipewire-pulse
 
 # ────────────────────────────────────────────────

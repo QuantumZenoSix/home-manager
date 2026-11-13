@@ -5,7 +5,9 @@
 # (already installed) rustup
 
 NOTE: system-level/essentials tools (drivers, graphics, audio, compiler dependencies, os tools, etc)...
-NetworkManager
+networkmanager
+networkmanager-openvpn  # OpenVPN plugin for NetworkManager (import .ovpn profiles)
+openvpn
 base-devel
 binutils
 btop            # htop on steroids
@@ -138,7 +140,7 @@ NOTE-AUR: Processing AUR pkgs from this point on
 #tmux-plugin-manager 
 csvlens           # tui csv viewer
 dust              # 'du' alternative (disk usage)
-eget              # usually AUR
+eget-bin          # AUR (prebuilt binary)
 #ggh               # SSH session manager – AUR
 jless             # json viewer
 lazygit           # TUI for git in terminal  

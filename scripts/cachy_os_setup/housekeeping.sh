@@ -14,7 +14,8 @@ echo ""
 echo "1. Refresh keyring & Full system + AUR update"
 echo "─────────────────────────────────────────────────"
 # Refresh Arch/Cachy keyring first (important on rolling releases)
-sudo pacman -Sy --needed archlinux-keyring cachyos-keyring
+sudo pacman -Sy --needed archlinux-keyring
+sudo pacman -S  --needed cachyos-keyring
 # Update everything (pacman repos + AUR packages via paru)
 paru -Syu --needed || echo "→ Update completed or nothing to do."
 
@@ -22,8 +23,13 @@ paru -Syu --needed || echo "→ Update completed or nothing to do."
 echo "2. Install common media codecs (for mp3, h264, etc.)"
 echo "─────────────────────────────────────────────────"
 # PipeWire is default; install codec packages if needed
-sudo pacman -S --needed gst-plugins-good gst-plugins-bad gst-plugins-ugly \
-    gstreamer-vaapi libavcodec-freeworld ffmpeg ffmpegthumbs || echo "→ Already installed or skipped."
+# One package per command: a single bad name would otherwise make pacman install none of them
+sudo pacman -S --needed gst-plugins-good  || echo "→ gst-plugins-good skipped."
+sudo pacman -S --needed gst-plugins-bad   || echo "→ gst-plugins-bad skipped."
+sudo pacman -S --needed gst-plugins-ugly  || echo "→ gst-plugins-ugly skipped."
+sudo pacman -S --needed gst-plugin-va     || echo "→ gst-plugin-va skipped."     # replaces the removed gstreamer-vaapi
+sudo pacman -S --needed ffmpeg            || echo "→ ffmpeg skipped."
+sudo pacman -S --needed ffmpegthumbs      || echo "→ ffmpegthumbs skipped."
 
 # ────────────────────────────────────────────────
 echo "3. Update Flatpaks (including runtimes)"

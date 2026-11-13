@@ -126,24 +126,25 @@ sudo pacman -S --needed --noconfirm lsp-plugins     # Audio plugins for easyeffe
 sudo pacman -S --needed --noconfirm calf
 sudo pacman -S --needed --noconfirm ffmpeg
 sudo pacman -S --needed --noconfirm ffmpegthumbnailer
-sudo pacman -S --needed --noconfirm ffmpegthumbnaileramd-ucodeamd-ucode
 sudo pacman -S --needed --noconfirm fish
 sudo pacman -S --needed --noconfirm git
 sudo pacman -S --needed --noconfirm gst-plugin-pipewire
-sudo pacman -S --needed --noconfirm gst-plugins-{good,bad,ugly}
+sudo pacman -S --needed --noconfirm gst-plugins-good
+sudo pacman -S --needed --noconfirm gst-plugins-bad
+sudo pacman -S --needed --noconfirm gst-plugins-ugly
 sudo pacman -S --needed --noconfirm gufw
 sudo pacman -S --needed --noconfirm intel-ucode
 sudo pacman -S --needed --noconfirm libva-utils
-sudo pacman -S --needed --noconfirm libva-vdpau-driver
+paru --needed --noconfirm -S libva-vdpau-driver     # AUR
 sudo pacman -S --needed --noconfirm linux-firmware
-sudo pacman -S --needed --noconfirm lm-sensors
+sudo pacman -S --needed --noconfirm lm_sensors
 sudo pacman -S --needed --noconfirm network-manager-applet
 sudo pacman -S --needed --noconfirm networkmanager
 sudo pacman -S --needed --noconfirm noto-fonts-emoji
 sudo pacman -S --needed --noconfirm paru
 sudo pacman -S --needed --noconfirm tlp
 sudo pacman -S --needed --noconfirm tlp-rdw
-sudo pacman -S --needed --noconfirm ttf-ms-fonts
+paru --needed --noconfirm -S ttf-ms-fonts           # AUR
 sudo pacman -S --needed --noconfirm ufw
 sudo pacman -S --needed --noconfirm vulkan-icd-loader
 sudo pacman -S --needed --noconfirm wl-clipboard    # Clipboard manager
@@ -169,7 +170,7 @@ sleep 1
 
 sudo pacman -S --needed --noconfirm steam
 sudo pacman -S --needed --noconfirm wireshark-qt
-sudo pacman -S --needed --noconfirm thonny
+paru --needed --noconfirm -S thonny                 # AUR
 sudo pacman -S --needed --noconfirm audacity
 sudo pacman -S --needed --noconfirm signal-desktop
 sudo pacman -S --needed --noconfirm discord
@@ -206,7 +207,8 @@ yay --needed --noconfirm -Sy brave-origin-nightly-bin
 
 # This hasn't worked for me - wezterm-gui is preferred
 # paru --needed --noconfirm -S wezterm-bin
-paru --needed --noconfirm -S wezterm-git
+# wezterm-git (AUR) builds fine but fails its cargo test step; the CachyOS repo ships a prebuilt wezterm (includes wezterm-gui)
+sudo pacman -S --needed --noconfirm wezterm
 
 # printf "\n[+] Installing omniget...\n\n"
 # git clone https://github.com/tonhowtf/omniget.git
@@ -249,9 +251,13 @@ read -p "Install gaming meta-packages (cachyos-gaming-meta + applications)? [y/N
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo -e "Installing gaming packages ..."
-    sudo pacman -S --needed --noconfirm cachyos-gaming-meta cachyos-gaming-applications
+    sudo pacman -S --needed --noconfirm cachyos-gaming-meta
+    sudo pacman -S --needed --noconfirm cachyos-gaming-applications
     # Optional extras many gamers want
-    sudo pacman -S --needed --noconfirm mangohud goverlay gamemode vkbasalt gamescope
+    for pkg in mangohud goverlay gamemode gamescope; do
+        sudo pacman -S --needed --noconfirm "$pkg"
+    done
+    paru --needed --noconfirm -S vkbasalt      # AUR
 fi
 
 # ─────────────────────────────────────────────────────────────────────
@@ -307,9 +313,10 @@ read -p "Install virt-manager + qemu-full + libvirt (for virtual machines, GPU p
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo -e "\n→ Installing virtualization packages..."
-    sudo pacman -S --needed --noconfirm \
-        qemu-full virt-manager virt-viewer dnsmasq bridge-utils libguestfs swtpm \
-        libvirt edk2-ovmf
+    for pkg in qemu-full virt-manager virt-viewer dnsmasq libguestfs swtpm libvirt edk2-ovmf; do
+        sudo pacman -S --needed --noconfirm "$pkg"
+    done
+    paru --needed --noconfirm -S bridge-utils  # AUR
 
     # Basic setup (follow CachyOS wiki for full GPU passthrough)
     echo "→ Enabling libvirt service..."
@@ -337,7 +344,8 @@ sudo systemctl enable --now apparmor || true
 # Snapper + pacman hook for snapshots is usually already set up on CachyOS
 # But confirm btrfs snapper if using btrfs
 if df -T / | grep -q btrfs; then
-    sudo pacman -S --needed --noconfirm snapper snap-pac
+    sudo pacman -S --needed --noconfirm snapper
+    sudo pacman -S --needed --noconfirm snap-pac
     echo "→ btrfs detected — snapper should already be configured via CachyOS defaults"
 fi
 
