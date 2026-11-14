@@ -327,7 +327,7 @@ ut_o_mp3_dl () {
 }
 
 ut_o_reset_chrome_audio_perms(){
-    rm -rf ~/.config/google-chrome/WidevineCdm
+    rm -rf ~/.config/google-chrome/WidevineCdm &> /dev/null
 }
 
 ut_o_tmux_init(){
