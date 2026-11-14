@@ -48,9 +48,12 @@ BSH | Shell & prompt | ut_o_tmux_init | Runs tmux init script and attaches to Ma
 
 BSH | SSH & networking | lzs | (alias) lazyssh TUI for ~/.ssh/config hosts.
 BSH | SSH & networking | serve | (alias) Serve the current directory over HTTP on port 8000.
+BSH | SSH & networking | ut_o_openvpn | Imports (first run) and connects the work OpenVPN profile via nmcli; `off` disconnects (alias `openvpn`).
 BSH | SSH & networking | ut_o_taildrop_to_phone | Taildrop a file to phone.
+BSH | SSH & networking | ut_o_toggle-wifi-ipv6 | Toggles IPv6 on the active Wi-Fi connection and reconnects.
 BSH | SSH & networking | ut_ssh_make_key | Generates Ed25519 SSH key with comment.
 BSH | SSH & networking | ut_ssh_reload_key | Restarts SSH agent and adds default key.
+BSH | SSH & networking | ut_sys_set_ufw_rules | Resets ufw to deny-in defaults plus tailscale0, libvirt DHCP/DNS, and VM/docker forwarding rules.
 BSH | SSH & networking | ut_sys_view_incoming_requests | Captures incoming TCP traffic on a port (default 22).
 BSH | SSH & networking | ut_ufw_only_allow_tailscale | Configures ufw to allow inbound only on tailscale0.
 
@@ -63,6 +66,7 @@ BSH | System & hardware | ut_sys_detect_distro_type | Detects distro family (deb
 BSH | System & hardware | ut_sys_update_nvidia_drivers_arch | Updates NVIDIA packages on Arch and shows nvidia-smi.
 
 BSH | Audio & video | ut_o_mp3_dl | Downloads YouTube audio as MP3 (yt-dlp or youtube-dl).
+BSH | Audio & video | ut_o_reset_chrome_audio_perms | Deletes Chrome's WidevineCdm folder to reset DRM/audio playback.
 BSH | Audio & video | ut_sys_restart_audio | Restarts WirePlumber/PipeWire services.
 
 BSH | Text & documents | ut_diff | Side-by-side colored diff suppressing common lines.
