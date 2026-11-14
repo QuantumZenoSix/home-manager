@@ -84,6 +84,59 @@ ut_txt_list_difference(){
 #             sys
 # ────────────────────────────────────────────────
 
+ut_sys_set_ufw_rules(){
+    # UFW syntax: allow in on <interface> out on <interface> from <ip> to <ip> port <port> proto <protocol>
+
+    sudo ufw reset
+
+    # Core base rules
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw default deny routed
+
+
+    # ==========================================
+    # Tailscale
+    # ==========================================
+
+    # Superceded by the tailscale rules below
+    sudo ufw allow in on tailscale0
+
+    # Tailscale services (tailscale port-specific rules)
+    # sudo ufw allow in on tailscale0 to any port 22 proto tcp    # SSH
+    # sudo ufw allow in on tailscale0 to any port 80 proto tcp    # HTTP
+    # sudo ufw allow in on tailscale0 to any port 443 proto tcp   # HTTPS
+    # sudo ufw allow in on tailscale0 to any port 445 proto tcp   # SMB
+    # sudo ufw allow in on tailscale0 to any port 8096 proto tcp  # Jellyfin
+
+
+    # ==========================================
+    # Libvirt DHCP and DNS
+    # ==========================================
+    #
+    # Libvirt DHCP
+    # sudo ufw allow in on virbr0 from 192.168.122.0/24 to any                    # Local VMs to connect to all host ports
+    # sudo ufw allow in on virbr0 from 192.168.122.0/24 to any port 67 proto udp  # DHCP
+    # ^ This was too restrictive because an initial DHCP Discover packet typically originates from 0.0.0.0, before the client has obtained an IP address.
+    sudo ufw allow in on virbr0 to any port 67 proto udp                        # Local VMs to connect to all host ports
+
+    # Allow DNS queries from virtual machines (udp/tcp)
+    sudo ufw allow in on virbr0 from 192.168.122.0/24 to any port 53 proto udp
+    sudo ufw allow in on virbr0 from 192.168.122.0/24 to any port 53 proto tcp
+
+
+    # ==========================================
+    # VM internet forwarding (Libvirt, docker, etc)
+    # ==========================================
+    #
+    # vm request forwarding (virbr0/docker0)
+    sudo ufw route allow in on virbr0 out on wlan0 from 192.168.122.0/24
+    sudo ufw route allow in on docker0 out on wlan0 from 172.17.0.0/16
+
+    sudo ufw reload
+    sudo ufw status numbered
+}
+
 ut_sys_detect_distro_type(){
     # returns debian|fedora|arch|null
     if [ -f /etc/os-release ]; then

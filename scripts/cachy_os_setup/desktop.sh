@@ -308,6 +308,9 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-
 printf "\n[+] Installing DBeaver (database manager)\n\n"
 flatpak install  -y --noninteractive flathub io.dbeaver.DBeaverCommunity
 
+printf "\n[+] Installing Bruno (api client gui)\n\n"
+flatpak install -y --noninteractive flathub com.usebruno.Bruno
+
 # FOR KDE ONLY - MESSES UP NIRI/NOCTALIA/SDDM SETUP
 # printf "\n[+] Installing archlinux-tweak-tool-git (optional)\n\n"
 # paru -S archlinux-tweak-tool-git
@@ -319,7 +322,9 @@ read -p "Install virt-manager + qemu-full + libvirt (for virtual machines, GPU p
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo -e "\n→ Installing virtualization packages..."
+    # KVM is the actual kernel virtualization technology. QEMU provides the virtual hardware, libvirt manages the VMs, and virt-manager is the GUI.
     for pkg in qemu-full virt-manager virt-viewer dnsmasq libguestfs swtpm libvirt edk2-ovmf; do
+        echo "[+] Installing $pkg"
         sudo pacman -S --needed --noconfirm "$pkg"
     done
     paru --needed --noconfirm -S bridge-utils  # AUR
