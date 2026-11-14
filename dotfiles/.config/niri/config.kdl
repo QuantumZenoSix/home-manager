@@ -12,3 +12,8 @@ spawn-sh-at-startup "xhost +SI:localuser:root"
 
 // Monique monitor configuration
 include "monitors.kdl"
+
+// Force strix-g16 to use discrete gpus for all monitors
+debug {
+    render-drm-device "/dev/dri/renderD129"
+}

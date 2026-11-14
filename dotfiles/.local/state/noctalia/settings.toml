@@ -21,7 +21,7 @@ order = [ "Primary" ]
         "group:g3",
         "session"
     ]
-    start = [ "media", "audio_visualizer" ]
+    start = [ "media", "audio_visualizer", "bar_6" ]
     thickness = 35
 
         [[bar.Primary.capsule_group]]
@@ -95,12 +95,101 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-2" ]
+widget_order = [
+    "lockscreen-login-box@eDP-2",
+    "lockscreen-login-box@eDP-1",
+    "lockscreen-login-box@HDMI-A-3",
+    "lockscreen-login-box@DP-3"
+]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-3"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.6998291015625
+    cy = 1185.30615234375
+    output = "DP-3"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-3".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-3"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.0
+    cy = 1258.0
+    output = "HDMI-A-3"
+    placement_height = 1440.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-3".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1280.7498779296875
+    cy = 1327.0853271484375
+    output = "eDP-1"
+    placement_height = 1600.0
+    placement_width = 2560.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-2"]
     box_height = 196.0
@@ -129,6 +218,10 @@ widget_order = [ "lockscreen-login-box@eDP-2" ]
         show_session_buttons = true
         show_unlock_hint = true
         show_weather = true
+
+[plugin_settings."0rgl/ask-claude"]
+model = "default"
+open_target = "tmux"
 
 [plugins]
 enabled = [
@@ -178,6 +271,15 @@ fill_mode = "center"
     [wallpaper.last]
     path = "/home/zeno/Pictures/Wallpapers/rivendell.jpg"
 
+    [wallpaper.monitors.DP-3]
+    path = "/home/zeno/Pictures/Wallpapers/rivendell.jpg"
+
+    [wallpaper.monitors.HDMI-A-3]
+    path = "/home/zeno/Pictures/Wallpapers/rivendell.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/zeno/Pictures/Wallpapers/rivendell.jpg"
+
     [wallpaper.monitors.eDP-2]
     path = "/home/zeno/Pictures/Wallpapers/rivendell.jpg"
 
@@ -202,6 +304,10 @@ type = "riversyx/noctaproton-vpn:bar"
 
 [widget.bar_5]
 type = "yuuto/calculator:bar"
+
+[widget.bar_6]
+enabled = false
+type = "riversyx/noctaproton-vpn:bar"
 
 [widget.battery]
 display_mode = "graphic"
