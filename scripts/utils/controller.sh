@@ -441,14 +441,20 @@ if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
         # NOTE: PWD MAY BE OFF AT THIS POINT
         cd ~/.config/home-manager
 
-        # Copy niri/noctalia settings
+        # desktop shell: copy niri/noctalia settings
         cp -r dotfiles/.config/niri/* ~/.config/niri/
         cp -r dotfiles/.config/noctalia/* ~/.config/noctalia/
-        cp -r dotfiles/.config/Kvantum/* ~/.config/Kvantum/
-        cp -r dotfiles/.config/shelly/* ~/.config/shelly/
         cp -v ./dotfiles/.local/state/noctalia/settings.toml ~/.local/state/noctalia/settings.toml
 
-        # Copy theme
+        # gui toolkit (qt/gtk)
+        cp -r dotfiles/.config/gtk-3.0/* ~/.config/gtk-3.0/
+        cp -r dotfiles/.config/Kvantum/* ~/.config/Kvantum/
+
+        
+        cp -r dotfiles/.config/shelly/* ~/.config/shelly/
+        cp -r dotfiles/.config/libreoffice/4/* ~/.config/libreoffice/4/
+
+        # display manager: copy theme
         $SUDO cp ./config_exports/sddm.conf /etc/sddm.conf
         $SUDO cp -r ./config_exports/usr_share_sddm_themes/* /usr/share/sddm/themes
 
