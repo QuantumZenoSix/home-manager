@@ -1,0 +1,15 @@
+/* Light scrollbar thumb, retaining the dark theme */
+
+scrollbar slider {
+    background-color: #d0d0d0;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+}
+
+scrollbar slider:hover {
+    background-color: #ffffff;
+}
+
+scrollbar slider:active {
+    background-color: #eeeeee;
+}

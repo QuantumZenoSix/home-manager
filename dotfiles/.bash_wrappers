@@ -197,8 +197,10 @@ nx_up(){
 
     # While I'm here, backup any niri/noctalia changes
     [[ -d ~/.config/niri/ ]] && cp -r ~/.config/niri/* ~/.config/home-manager/dotfiles/.config/niri/
+    [[ -d ~/.config/gtk-3.0/ ]] && cp -r ~/.config/gtk-3.0/* ~/.config/home-manager/dotfiles/.config/gtk-3.0/
     [[ -d ~/.config/shelly/ ]] && cp -r ~/.config/shelly/* ~/.config/home-manager/dotfiles/.config/shelly/
     [[ -d ~/.config/Kvantum/ ]] && cp -r ~/.config/Kvantum/* ~/.config/home-manager/dotfiles/.config/Kvantum/
+    [[ -d ~/.config/libreoffice/4/ ]] && cp -r ~/.config/libreoffice/4/* ~/.config/home-manager/dotfiles/.config/libreoffice/4/
     # v4
     [[ -d ~/.config/noctalia/ ]] && cp -r ~/.config/noctalia/* ~/.config/home-manager/dotfiles/.config/noctalia/
     # v5

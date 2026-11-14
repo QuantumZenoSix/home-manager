@@ -546,7 +546,6 @@ ut_o_openvpn(){
 alias openvpn="ut_o_openvpn"
 
 
-
 ut_o_toggle-wifi-ipv6() {
     local wifi_conn
     local current_state

@@ -1,0 +1,3 @@
+smb://ada-pi-server/myhdd/ myhdd
+smb://ada-pi-server/myhdd-backup/ myhdd-backup
+sftp://ada-pi-server/home/ada ada
