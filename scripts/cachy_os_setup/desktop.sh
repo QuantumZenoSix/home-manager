@@ -217,6 +217,9 @@ sudo pacman -S --needed --noconfirm wezterm
 # pnpm tauri build
 #
 
+# S3 Gui file browser
+cargo install brows3 --locked
+
 
 
 echo -e "${GREEN}=========================================="
