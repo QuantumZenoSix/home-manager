@@ -326,7 +326,9 @@ ut_o_mp3_dl () {
         fi
 }
 
-
+ut_o_reset_chrome_audio_perms(){
+    rm -rf ~/.config/google-chrome/WidevineCdm
+}
 
 ut_o_tmux_init(){
     bash ~/.tmux_init.sh 2>/dev/null
