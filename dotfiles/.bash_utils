@@ -545,6 +545,42 @@ ut_o_openvpn(){
 
 alias openvpn="ut_o_openvpn"
 
+
+
+ut_o_toggle-wifi-ipv6() {
+    local wifi_conn
+    local current_state
+    local new_state
+
+    wifi_conn=$(nmcli -t -f NAME,TYPE connection show --active |
+        awk -F: '$2 == "802-11-wireless" {print $1; exit}')
+
+    if [[ -z "$wifi_conn" ]]; then
+        echo "Error: No active Wi-Fi connection found."
+        return 1
+    fi
+
+    current_state=$(nmcli -g ipv6.method connection show "$wifi_conn")
+
+    if [[ "$current_state" == "disabled" ]]; then
+        new_state="auto"
+    else
+        new_state="disabled"
+    fi
+
+    echo "Wi-Fi: $wifi_conn"
+    echo "Changing IPv6: $current_state -> $new_state"
+
+    sudo nmcli connection modify "$wifi_conn" ipv6.method "$new_state" || return 1
+
+    echo "Reconnecting Wi-Fi to apply changes..."
+    nmcli connection down "$wifi_conn" &&
+        nmcli connection up "$wifi_conn" &&
+        echo "IPv6 is now $new_state"
+}
+
+
+
 # == FD
 # replace img
 # fd --regex --max-depth=10 --min-depth=0 'ML.md$' -x sed -i -r  's/<img\s*?src="([^"]+)"\s*?style=(\S|\s)*$/\!\[\]\(\1\)/g' '{}'
