@@ -7,38 +7,45 @@ enabled = true
 order = [ "Primary" ]
 
     [bar.Primary]
+    background_opacity = 0.0
     capsule_radius = 5
     center = [ "group:g4" ]
+    compositor_blur = false
+    contact_shadow = true
     end = [
         "group:g2",
+        "group:g5",
+        "group:g1",
+        "group:g3",
+        "session",
+        "control-center",
         "notifications",
         "network",
-        "bluetooth",
-        "volume",
-        "brightness",
-        "group:g1",
-        "control-center",
-        "group:g3",
-        "session"
+        "brightness"
     ]
+    font_scale = 0.97999998554587364
+    margin_edge = 3
     start = [ "media", "audio_visualizer", "bar_6" ]
     thickness = 35
 
         [[bar.Primary.capsule_group]]
         accordion = true
         accordion_direction = "end"
-        border_width = 1.0
+        border = "#FFFFFF"
+        border_width = 1.5
         enabled = true
         fill = "surface_container"
         id = "g2"
         members = [ "tray", "status", "mini-docker", "bar", "bar_2", "status_2", "bar_3", "bar_4" ]
         opacity = 1.0
         padding = 6.0
+        radius = 12.0
 
         [[bar.Primary.capsule_group]]
         accordion = true
         accordion_direction = "end"
-        border_width = 1.0
+        border = "#FFFFFF"
+        border_width = 1.5
         enabled = true
         fill = "surface_container"
         id = "g1"
@@ -50,19 +57,21 @@ order = [ "Primary" ]
         [[bar.Primary.capsule_group]]
         accordion = true
         accordion_direction = "end"
-        border_width = 1.0
+        border = "#FFFFFF"
+        border_width = 2.0
         enabled = true
         fill = "surface_container"
         id = "g4"
         members = [ "workspaces", "screenshot", "widget", "recorder", "wallpaper", "keybinds" ]
         opacity = 1.0
-        padding = 6.0
-        radius = 5.0
+        padding = 10.0
+        radius = 8.0
 
         [[bar.Primary.capsule_group]]
         accordion = true
         accordion_direction = "end"
-        border_width = 1.0
+        border = "#FFFFFF"
+        border_width = 1.5
         enabled = true
         fill = "surface_container"
         id = "g3"
@@ -71,8 +80,39 @@ order = [ "Primary" ]
         padding = 6.0
         radius = 5.0
 
+        [[bar.Primary.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border = "#FFFFFF"
+        border_width = 1.5
+        enabled = true
+        fill = "surface_container"
+        id = "g5"
+        members = [ "bluetooth", "volume" ]
+        opacity = 1.0
+        padding = 6.0
+        radius = 12.0
+
 [bluetooth]
 connect_when_enabled = true
+
+[[control_center.shortcuts]]
+type = "wifi"
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[[control_center.shortcuts]]
+type = "nightlight"
+
+[[control_center.shortcuts]]
+type = "power_profile"
+
+[[control_center.shortcuts]]
+type = "notification"
 
 [idle]
 behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
@@ -91,6 +131,9 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
     action = "screen_off"
     enabled = true
     timeout = 3600.0
+
+[location]
+address = "Bellflower, CA"
 
 [lockscreen_widgets]
 enabled = false
@@ -225,10 +268,8 @@ open_target = "tmux"
 
 [plugins]
 enabled = [
-    "damian-ds7/battery-threshold",
     "rylos/syncthing",
     "davemhammer/tailscale",
-    "carlocamacho/taildrop",
     "nightwatch75/file-search",
     "noctalia/bitwarden",
     "8bury/mini-docker",
@@ -247,6 +288,7 @@ enabled = [
 ]
 
 [shell]
+avatar_path = "/home/zeno/Pictures/Book-Tunnel.jpg"
 font_family = "Arabic Newspaper"
 time_format = "{:%-I:%M %p}"
 
@@ -254,6 +296,10 @@ time_format = "{:%-I:%M %p}"
     default_view = "all"
     pinned = [ "brave-origin-nightly", "spotify" ]
     sort_by_usage = false
+
+    [shell.panel]
+    control_center_placement = "floating"
+    open_near_click_control_center = true
 
     [shell.screenshot]
     directory = "/home/zeno/Pictures/Screenshots"
@@ -286,8 +332,15 @@ fill_mode = "center"
 [widget.audio_visualizer]
 anchor = true
 bands = 90
+capsule_border = "primary"
+capsule_border_width = 2.5
+capsule_opacity = 0.0
+capsule_radius = 13
 centered = false
 width = 600
+
+    [widget.audio_visualizer.actions]
+    left = "media toggle"
 
 [widget.bar]
 type = "rylos/remmina:bar"
@@ -329,6 +382,12 @@ enabled = false
 
 [widget.media]
 artist_first = true
+capsule = true
+capsule_border = "on_surface"
+capsule_border_width = 2.5
+capsule_padding = 8
+capsule_radius = 12
+color = "#FFFFFF"
 max_length = 399
 min_length = 272
 show_progress = true
@@ -345,7 +404,14 @@ enabled = false
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
 
+[widget.session]
+capsule = false
+capsule_border = "#FFFFFF"
+capsule_border_width = 1.5
+capsule_radius = 8
+
 [widget.status]
+show_counts = false
 type = "davemhammer/tailscale:status"
 
 [widget.status_2]
@@ -353,7 +419,15 @@ type = "3dprogramin/ufw:status"
 
 [widget.tray]
 drawer = true
+enabled = false
 hide_passive = false
 
 [widget.widget]
 type = "alexander/screen-toolkit:widget"
+
+[widget.workspaces]
+capsule = true
+capsule_border = "primary"
+capsule_border_width = 3.5
+capsule_radius = "auto"
+show_labels = false

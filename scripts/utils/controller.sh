@@ -466,6 +466,11 @@ if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
         $SUDO cp ./resources/config_exports/sddm.conf /etc/sddm.conf
         $SUDO cp -r ./resources/config_exports/usr_share_sddm_themes/* /usr/share/sddm/themes
 
+        # set images
+        mkdir -p $HOME/Pictures/Wallpapers/
+        cp ./assets/wallpapers/rivendell.jpg $HOME/Pictures/Wallpapers/
+        cp ./assets/wallpapers/Book-Tunnel.jpg /home/zeno/Pictures/Book-Tunnel.jpg
+
 
     fi
 
@@ -496,13 +501,19 @@ EOF
 
 ### Desktop todos
 - Set Wallpaper
-- Run `qt6ct` and `kvantummanager` to configure theme for qt apps
-- Run "Monique" for multi-monitor setup
 - Confirm portals are running: `ps aux | grep xdg-desktop-portal`
 - Or start them manually:
+    /usr/lib/xdg-desktop-portal &
+    /usr/lib/xdg-desktop-portal-gtk &
 
-      /usr/lib/xdg-desktop-portal &
-      /usr/lib/xdg-desktop-portal-gtk &
+#### Optional todos (should already be handled)
+- Run `qt6ct` and `kvantummanager` to changed configured theme for qt apps (preferred theme already applied)
+- Run "Monique" for multi-monitor setup
+- Run a scripts to check which programs did/didn't install correctly
+    - ./scripts/utils/check_installed.sh
+- Setup Restic backups with local home-lab server
+    - ./scripts/backup-initializer/setup_smb_and_restic.sh
+
 EOF
     fi
 
