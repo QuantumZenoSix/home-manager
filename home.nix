@@ -355,8 +355,8 @@
 
         # Install fonts
         # printf "[+] Installing fonts..."
-        # unzip -o ./fonts/JetBrainsMonoNerdFont-REGULARFONTSONLY.zip  -d ./fonts/
-        # sudo cp ./fonts/*.ttf /usr/share/fonts/truetype/
+        # unzip -o ./assets/fonts/JetBrainsMonoNerdFont-REGULARFONTSONLY.zip  -d ./assets/fonts/
+        # sudo cp ./assets/fonts/*.ttf /usr/share/fonts/truetype/
 
 
 

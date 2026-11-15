@@ -1,12 +1,12 @@
 ---
 name: update-command-finder
-description: Syncs pkg_lists/cmd_list.txt (the data file read by the `cf` command finder in dotfiles/.zshrc) with the custom shell functions and aliases defined in dotfiles/.bash_aliases, .bash_wrappers, .bash_utils and .zsh_customizations. Use when the user adds, removes, or renames a bash/zsh function or alias, or asks to update, refresh, sync, or audit cmd_list.txt / the command finder / `cf`.
+description: Syncs resources/cmd_list.txt (the data file read by the `cf` command finder in dotfiles/.zshrc) with the custom shell functions and aliases defined in dotfiles/.bash_aliases, .bash_wrappers, .bash_utils and .zsh_customizations. Use when the user adds, removes, or renames a bash/zsh function or alias, or asks to update, refresh, sync, or audit cmd_list.txt / the command finder / `cf`.
 argument-hint: "[function name or 'full' resync]"
 ---
 
 # Update Command Finder
 
-Keep the `BSH` rows of `pkg_lists/cmd_list.txt` **true to the shell files**. The functions in `dotfiles/` are the source of truth. Describe each one from its real body, never from its name alone.
+Keep the `BSH` rows of `resources/cmd_list.txt` **true to the shell files**. The functions in `dotfiles/` are the source of truth. Describe each one from its real body, never from its name alone.
 
 ## File format
 
@@ -39,7 +39,7 @@ comm -3 \
   <(grep -hoE '^\s*(function\s+)?[A-Za-z_][A-Za-z0-9_-]*\s*\(\)|^\s*alias\s+[A-Za-z_][A-Za-z0-9_-]*=' \
       dotfiles/.bash_aliases dotfiles/.bash_wrappers dotfiles/.bash_utils dotfiles/.zsh_customizations \
     | sed -E 's/^\s*(function\s+|alias\s+)?//; s/\s*(\(\)|=)$//' | sort -u) \
-  <(awk -F' *[|] *' '$1=="BSH"{print $3}' pkg_lists/cmd_list.txt | sort -u)
+  <(awk -F' *[|] *' '$1=="BSH"{print $3}' resources/cmd_list.txt | sort -u)
 ```
 
 - **Left column**: defined but not listed. These are candidates to add.

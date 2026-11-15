@@ -2,7 +2,7 @@
 # Report which packages/tools from the Arch/CachyOS install path are (not) installed.
 #
 # Sources checked:
-#   - pkg_lists/arch_base.txt               (same parsing as pkg_install_arch.sh)
+#   - resources/arch_base.txt               (same parsing as pkg_install_arch.sh)
 #   - scripts/cachy_os_setup/desktop.sh     (every pacman/paru/yay -S line, flatpak installs)
 #   - scripts/cachy_os_setup/housekeeping.sh
 #   - manual installs in pkg_install_arch.sh + controller.sh (curl/cargo/npm/git clone)
@@ -82,12 +82,12 @@ pkgs_from_script() {
 section() { printf "\n${B}%s${N}\n" "$1"; }
 
 # ─── arch_base.txt ────────────────────────────────────────────────
-section "pkg_lists/arch_base.txt"
+section "resources/arch_base.txt"
 while IFS= read -r line; do
     line=${line%%#*}; line=${line//[[:space:]]/}
     [[ -z $line || $line == NOTE* ]] && continue
     check_pkg "$line" "arch_base.txt"
-done < pkg_lists/arch_base.txt
+done < resources/arch_base.txt
 for p in git go rustup yay; do check_pkg "$p" "pkg_install_arch.sh"; done
 
 # ─── manual installs (pkg_install_arch.sh / controller.sh) ────────

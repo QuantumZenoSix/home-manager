@@ -163,9 +163,9 @@ export PATH="$PATH:${HOME}/.nix-profile/bin"
 #   cf f    -> my functions & aliases (BSH entries)   [Enter at the prompt = f]
 #   cf p    -> packages & tools (CMD entries)
 #   cf a    -> everything
-# Entries + groups live in pkg_lists/cmd_list.txt  (TYPE | GROUP | name | description)
+# Entries + groups live in resources/cmd_list.txt  (TYPE | GROUP | name | description)
 command_finder(){
-    local cmd_list=~/.config/home-manager/pkg_lists/cmd_list.txt
+    local cmd_list=~/.config/home-manager/resources/cmd_list.txt
     local choice=$1 type title sel
 
     if [[ -z $choice ]]; then

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Debian/Ubuntu counterpart of pkg_install_arch.sh + pkg_lists/arch_base.txt.
+# Debian/Ubuntu counterpart of pkg_install_arch.sh + resources/arch_base.txt.
 # Package names map to the Arch list where possible; anything not in apt is built/installed manually below.
 
 printf "\n\n"

@@ -12,7 +12,7 @@ cd ~/.config/home-manager
 # --answerclean/--answerdiff pre-answer yay's menus, which `yes |` can't get past (they want N/A, not y)
 AUR="yay -S --needed --noconfirm --answerclean None --answerdiff None "
 PACMAN="$SUDO pacman -S --needed "
-FILE="./pkg_lists/arch_base.txt"
+FILE="./resources/arch_base.txt"
 
 
 # Some pkgs can't have 'yes' piped to them as they require user input. 

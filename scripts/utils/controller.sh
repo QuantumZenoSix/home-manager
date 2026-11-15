@@ -139,10 +139,10 @@ install_oh_my_zsh_and_powerline(){
 
         # Install fonts
         printf "[+] Installing fonts..."
-        unzip -o ./fonts/JetBrainsMonoNerdFont-REGULARFONTSONLY.zip  -d ./fonts/
+        unzip -o ./assets/fonts/JetBrainsMonoNerdFont-REGULARFONTSONLY.zip  -d ./assets/fonts/
         # Not guaranteed to exist (minimal Debian, Arch uses /usr/share/fonts/TTF)
         $SUDO mkdir -p /usr/share/fonts/truetype
-        $SUDO cp ./fonts/*.ttf /usr/share/fonts/truetype/
+        $SUDO cp ./assets/fonts/*.ttf /usr/share/fonts/truetype/
 
         if command -v zsh &> /dev/null
         then
@@ -455,8 +455,8 @@ if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
         cp -r dotfiles/.config/libreoffice/4/* ~/.config/libreoffice/4/
 
         # display manager: copy theme
-        $SUDO cp ./config_exports/sddm.conf /etc/sddm.conf
-        $SUDO cp -r ./config_exports/usr_share_sddm_themes/* /usr/share/sddm/themes
+        $SUDO cp ./resources/config_exports/sddm.conf /etc/sddm.conf
+        $SUDO cp -r ./resources/config_exports/usr_share_sddm_themes/* /usr/share/sddm/themes
 
 
     fi

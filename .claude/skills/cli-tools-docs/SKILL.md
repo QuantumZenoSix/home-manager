@@ -1,23 +1,23 @@
 ---
 name: cli-tools-docs
-description: Regenerates or updates cli_tools.md (repo root), the command-line reference of every tool the Arch install path sets up (pkg_lists/arch_base.txt, the manual installs in scripts/pkg_install_arch.sh, the oh-my-zsh setup in scripts/utils/controller.sh, and the CachyOS desktop extras), with how to call each tool, what it's for, the user's aliases, and install issues. Use when the user adds, removes, or renames packages in pkg_lists/arch_base.txt or the install scripts, adds CLI aliases for a tool, or asks to update, refresh, sync, or audit the CLI tools / packages / command-line reference doc.
+description: Regenerates or updates docs/cli_tools.md, the command-line reference of every tool the Arch install path sets up (resources/arch_base.txt, the manual installs in scripts/pkg_install_arch.sh, the oh-my-zsh setup in scripts/utils/controller.sh, and the CachyOS desktop extras), with how to call each tool, what it's for, the user's aliases, and install issues. Use when the user adds, removes, or renames packages in resources/arch_base.txt or the install scripts, adds CLI aliases for a tool, or asks to update, refresh, sync, or audit the CLI tools / packages / command-line reference doc.
 argument-hint: "[package name or 'full' resync]"
 ---
 
 # CLI Tools Docs
 
-Keep `cli_tools.md` (repo root) **true to the install scripts**. The package lists and scripts are the source of truth. Never document a command, flag, or binary name you haven't confirmed from `pacman`, the tool's own `--help`, or its upstream docs.
+Keep `docs/cli_tools.md` **true to the install scripts**. The package lists and scripts are the source of truth. Never document a command, flag, or binary name you haven't confirmed from `pacman`, the tool's own `--help`, or its upstream docs.
 
 ## Sources to read
 
 | What | Where |
 | --- | --- |
-| Main package list | `pkg_lists/arch_base.txt`. Lines before `NOTE-AUR` are installed with pacman; lines after it with pacman, falling back to yay. `#` starts a comment; `NOTE…` lines are section banners |
+| Main package list | `resources/arch_base.txt`. Lines before `NOTE-AUR` are installed with pacman; lines after it with pacman, falling back to yay. `#` starts a comment; `NOTE…` lines are section banners |
 | Essentials + manual installs | `scripts/pkg_install_arch.sh`: the essentials block (`base-devel`, `git`, `go`, `rustup`) and the "manual" section (curl installers, `cargo install`, `npm -g`, `git clone`, `uv tool`, extra `$PACMAN` lines at the bottom) |
 | Shell setup | `install_oh_my_zsh_and_powerline` in `scripts/utils/controller.sh`; `plugins=(…)` and `ZSH_THEME` in `dotfiles/.zsh_customizations` |
 | Desktop extras | `scripts/cachy_os_setup/desktop.sh` (CLI tools go in §15; GUI apps go in its one-line list) |
 | Aliases | `dotfiles/.bash_aliases` (the "Your aliases" info: `alias → command`) |
-| Custom functions | `pkg_lists/cmd_list.txt`. Reference helper functions next to the tool they wrap (e.g. `ut_o_mp3_dl` with yt-dlp), but don't document the functions themselves |
+| Custom functions | `resources/cmd_list.txt`. Reference helper functions next to the tool they wrap (e.g. `ut_o_mp3_dl` with yt-dlp), but don't document the functions themselves |
 
 ## Gather package facts
 
@@ -37,7 +37,7 @@ Columns: `section` (pacman/aur), `installed` (yes/no on this machine), `package`
 Then confirm coverage. Every package must appear somewhere in the doc, including libraries and fonts in §16:
 
 ```bash
-cut -f3 <scratchpad>/pkgs.tsv | sort -u | while read -r p; do grep -qF "\`$p\`" cli_tools.md || echo "MISSING: $p"; done
+cut -f3 <scratchpad>/pkgs.tsv | sort -u | while read -r p; do grep -qF "\`$p\`" docs/cli_tools.md || echo "MISSING: $p"; done
 ```
 
 ## Doc structure (keep this order and these anchors)

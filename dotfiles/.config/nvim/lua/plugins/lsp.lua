@@ -22,7 +22,7 @@
  if vim.fn.executable("pwsh") == 1 then table.insert(servers, "powershell_es") end -- PowerShell
 
  -- Linters to install (Mason package names) for nvim-lint (section E) - run with <leader>lc
- -- Not here because they don't come from Mason: perlcritic (Perl, Arch pkg perl-perl-critic in pkg_lists/arch_base.txt),
+ -- Not here because they don't come from Mason: perlcritic (Perl, Arch pkg perl-perl-critic in resources/arch_base.txt),
  --   clippy (Rust, via cargo), zsh -n (Zsh)
  -- PowerShell has no nvim-lint linter - powershell_es already runs PSScriptAnalyzer as LSP diagnostics
  local linters = {

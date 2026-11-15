@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Prints one TSV row per package in pkg_lists/arch_base.txt so cli_tools.md can be checked against reality:
+# Prints one TSV row per package in resources/arch_base.txt so cli_tools.md can be checked against reality:
 #   section <TAB> installed <TAB> package <TAB> description <TAB> binaries in /usr/bin
 # section   = pacman | aur   (packages after the NOTE-AUR line are installed with yay)
 # installed = yes | no       (on the machine running this script)
@@ -10,7 +10,7 @@
 # Usage (from the repo root): bash .claude/skills/cli-tools-docs/gather.sh [path/to/arch_base.txt]
 set -euo pipefail
 
-list_file="${1:-pkg_lists/arch_base.txt}"
+list_file="${1:-resources/arch_base.txt}"
 if [[ ! -f "$list_file" ]]; then
     echo "gather.sh: package list not found: $list_file" >&2
     exit 1

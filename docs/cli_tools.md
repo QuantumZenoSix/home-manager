@@ -3,13 +3,13 @@
 Every command-line tool the Arch install path sets up, grouped by job, with what it's for and how to call it.
 
 - **Sources of truth:**
-  - `pkg_lists/arch_base.txt`: pacman packages, then AUR packages after `NOTE-AUR`
+  - `resources/arch_base.txt`: pacman packages, then AUR packages after `NOTE-AUR`
   - `scripts/pkg_install_arch.sh`: the essentials block, plus the manual installs (curl / cargo / npm / git)
   - `scripts/utils/controller.sh`: oh-my-zsh and powerlevel10k
   - `scripts/cachy_os_setup/desktop.sh`: desktop installs only ([§15](#15-desktop-install-extras-cachyos))
 - **Install-source tags:** `pacman` · `AUR` (yay) · `manual` (curl / cargo / npm / git in `pkg_install_arch.sh`) · `shell` (`controller.sh`) · `desktop` (`desktop.sh`)
 - **†** means the tool wasn't installed on the machine this was generated on. Its command name comes from the package metadata or the upstream docs.
-- **Your aliases** are shown as `alias → command` and come from `dotfiles/.bash_aliases`. Custom shell functions (`gt_*`, `dk_*`, `ut_*`, `nx_*`…) are listed in `pkg_lists/cmd_list.txt`. Run `cf` to fuzzy-find them.
+- **Your aliases** are shown as `alias → command` and come from `dotfiles/.bash_aliases`. Custom shell functions (`gt_*`, `dk_*`, `ut_*`, `nx_*`…) are listed in `resources/cmd_list.txt`. Run `cf` to fuzzy-find them.
 - **Keeping it current:** after editing the package lists or install scripts, ask Claude to "update the CLI tools doc". This runs the project skill `.claude/skills/cli-tools-docs/`.
 - **Last synced:** 2026-11-05
 
@@ -340,7 +340,7 @@ These are installed as dependencies for builds, media, or rendering. You won't c
 | `alsa-lib`, `dbus` | Audio and IPC libraries (`dbus-send` / `dbus-monitor` exist for debugging) |
 | `libass`, `libbluray`, `zimg`, `ncurses` | Subtitle rendering, Blu-ray access, image scaling, terminal UI library |
 | `perl-padwalker` | Perl module needed by `perl-debug-adapter` (Neovim DAP) |
-| `powerline-fonts`, `ttf-nerd-fonts-symbols`, `ttf-nerd-fonts-symbols-mono`, `ttf-jetbrains-mono-nerd` | Prompt and icon glyphs for p10k, Neovim, yazi, lazygit. `controller.sh` also copies JetBrains Mono Nerd Font from `./fonts/` |
+| `powerline-fonts`, `ttf-nerd-fonts-symbols`, `ttf-nerd-fonts-symbols-mono`, `ttf-jetbrains-mono-nerd` | Prompt and icon glyphs for p10k, Neovim, yazi, lazygit. `controller.sh` also copies JetBrains Mono Nerd Font from `./assets/fonts/` |
 | `pipewire` | Audio server (only reinstalled if it's already running) |
 
 ---

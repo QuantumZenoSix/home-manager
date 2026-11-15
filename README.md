@@ -108,7 +108,7 @@ I plan on making it declarative, but until then this will do - also makes it eas
 
 📱 __Base Applications__
 
-A full list of base applications lives here: [Arch Install List](./pkg_lists/arch_base.txt)  
+A full list of base applications lives here: [Arch Install List](./resources/arch_base.txt)  
 
 <br />
 
@@ -184,7 +184,7 @@ Beyond that, the `housekeeping.sh` script does the following:
 ## 🛠️ Will this support other distros besides Arch btw?
 
 Yes, some work has already been done in the debian distro family (which now appears in the list) with the Pop! OS as the chosen desktop-oriented distro in this regard.  
-More work is to be done for this, but have made it a priority as it's fairly functionality as is (though it lacks modularity as I don't have an entry in the `./pkg_lists` dir as of yet.
+More work is to be done for this, but have made it a priority as it's fairly functionality as is (though it lacks modularity as I don't have an entry in the `./resources` dir as of yet.
 Fedora, maybe one day.
 
 <br />
