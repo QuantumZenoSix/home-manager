@@ -214,17 +214,20 @@ echo "[+] Enabling Docker service..."
 $SUDO  systemctl enable docker
 $SUDO  systemctl start docker
 
-# Add user to docker group and refresh
+# Add user to docker group. No `newgrp docker` here: it opens a new interactive shell that pauses
+# the install until you `exit`, and it can't refresh this script's groups anyway
 $SUDO usermod -aG docker $USER 
-newgrp docker
+echo "[+] Added $USER to the docker group - log out/in (or run 'newgrp docker' in a terminal) to use docker without sudo"
 
 
 echo "[+] Installing Docker Compose Viewer (dcv)..."
-git clone https://github.com/tokuhirom/dcv.git
-cd dcv
-make build-helpers
-go build -o dcv
-sudo mv dcv /usr/local/bin/
+# Build in a temp dir: a clone inside the repo gets staged by `git add -A` and makes re-runs fail
+# (dcv/ already exists). Subshell because this script is sourced by controller.sh, so a bare `cd`
+# would leave the rest of the install (font + dotfile copies use ./ paths) running from elsewhere
+dcv_tmp=$(mktemp -d)
+git clone https://github.com/tokuhirom/dcv.git "$dcv_tmp/dcv" \
+    && ( cd "$dcv_tmp/dcv" && make build-helpers && go build -o dcv && sudo mv dcv /usr/local/bin/ )
+rm -rf "$dcv_tmp"
 
 echo "[+] Installing Yazi bookmarks plugin..."
 ya pkg add dedukun/bookmarks   # no sudo: it installs into the invoking user's ~/.config/yazi

@@ -1,12 +1,12 @@
 ---
 name: nvim-plugin-docs
-description: Regenerates or updates nvim_plugins.md (repo root), the organized reference of every Neovim plugin in dotfiles/.config/nvim, covering keymaps, commands, no-keybind/passive features, the language support matrix, inactive plugins, and config issues. Use when the user adds, removes, updates, or remaps Neovim plugins or keymaps, edits files under dotfiles/.config/nvim/, changes LSP servers/linters/debuggers/treesitter parsers, or asks to update, refresh, sync, or audit the nvim plugin docs or plugin reference.
+description: Regenerates or updates docs/nvim_plugins.md, the organized reference of every Neovim plugin in dotfiles/.config/nvim, covering keymaps, commands, no-keybind/passive features, the language support matrix, inactive plugins, and config issues. Use when the user adds, removes, updates, or remaps Neovim plugins or keymaps, edits files under dotfiles/.config/nvim/, changes LSP servers/linters/debuggers/treesitter parsers, or asks to update, refresh, sync, or audit the nvim plugin docs or plugin reference.
 argument-hint: "[plugin name or 'full' resync]"
 ---
 
 # Neovim Plugin Docs
 
-Keep `nvim_plugins.md` (repo root) **true to the config in `dotfiles/.config/nvim/`**. The config is the source of truth. Never document a key, command, or feature you haven't seen in the config, in the installed plugin source, or in the probe report.
+Keep `docs/nvim_plugins.md` **true to the config in `dotfiles/.config/nvim/`**. The config is the source of truth. Never document a key, command, or feature you haven't seen in the config, in the installed plugin source, or in the probe report.
 
 ## Sources to read
 

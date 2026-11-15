@@ -210,6 +210,12 @@ echo "[+] Enabling docker service..."
 $SUDO  systemctl enable docker
 $SUDO  systemctl start docker
 
+# Add user to docker group (docker.io creates it, so this fails if docker didn't install).
+# No `newgrp docker`: it opens a new interactive shell that pauses the install until you `exit`
+if $SUDO usermod -aG docker "$USER"; then
+    echo "[+] Added $USER to the docker group - log out/in (or run 'newgrp docker' in a terminal) to use docker without sudo"
+fi
+
 echo "[+] Installing Rust (rustup)..."    # apt's cargo is too old for most of the crates below
 if ! command -v rustup >/dev/null 2>&1; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

@@ -137,12 +137,20 @@ install_oh_my_zsh_and_powerline(){
     # 'noupdateshellenv' means we're just updating our local files - no need to install ohmyzsh/fonts/powerline
     if [ "${INSTALL_SUBTYPE}" != "noupdateshellenv" ]; then
 
-        # Install fonts
-        printf "[+] Installing fonts..."
-        unzip -o ./assets/fonts/JetBrainsMonoNerdFont-REGULARFONTSONLY.zip  -d ./assets/fonts/
+        # Install fonts - extract to a temp dir so ~34MB of .ttf files don't land in the repo
+        # (setup_nix's `git add -A` would otherwise pull them into the flake / Nix store)
+        printf "[+] Installing fonts...\n"
+        local font_tmp
+        font_tmp=$(mktemp -d)
+        unzip -o ./assets/fonts/JetBrainsMonoNerdFont-REGULARFONTSONLY.zip  -d "$font_tmp"
         # Not guaranteed to exist (minimal Debian, Arch uses /usr/share/fonts/TTF)
         $SUDO mkdir -p /usr/share/fonts/truetype
-        $SUDO cp ./assets/fonts/*.ttf /usr/share/fonts/truetype/
+        $SUDO cp "$font_tmp"/*.ttf /usr/share/fonts/truetype/
+        rm -rf "$font_tmp"
+        # fontconfig may be missing on minimal installs
+        if command -v fc-cache &> /dev/null; then
+            $SUDO fc-cache -f
+        fi
 
         if command -v zsh &> /dev/null
         then
