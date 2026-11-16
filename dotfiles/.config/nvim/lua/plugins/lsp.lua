@@ -453,10 +453,18 @@
                return vim.tbl_extend("force", selene, { cwd = cwd })
              end
 
-             -- perlcritic: use Arch's perl-perl-critic directly - on WSL a Windows perlcritic can come first on PATH and won't run
+             -- perlcritic: use Arch's perl-perl-critic directly
+             -- on WSL a Windows perlcritic can come first on PATH and won't run
              if vim.fn.executable("/usr/bin/vendor_perl/perlcritic") == 1 then
-               lint.linters.perlcritic.cmd = "/usr/bin/vendor_perl/perlcritic"
+                 local perlcritic = lint.linters.perlcritic
+
+                 lint.linters.perlcritic = function()
+                     return vim.tbl_extend("force", perlcritic(), {
+                         cmd = "/usr/bin/vendor_perl/perlcritic",
+                     })
+                 end
              end
+
 
              -- Autocommand group for linting
              -- local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
