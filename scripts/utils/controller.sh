@@ -512,7 +512,7 @@ EOF
 - Run a scripts to check which programs did/didn't install correctly
     - ./scripts/utils/check_installed.sh
 - Setup Restic backups with local home-lab server
-    - ./scripts/backup-initializer/setup_smb_and_restic.sh
+    - sudo ./scripts/backup-initializer/backup-initializer.sh
 
 EOF
     fi

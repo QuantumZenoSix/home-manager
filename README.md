@@ -64,6 +64,10 @@ _Note: This is designed for Arch Linux/Arch-based distros though I've done some 
 - __Multiplexer__: TMUX (though WezTerm's built-in is pretty good)
 - __Dotfile manager__: Nix home-manager (also use nix for dev shells)
 
+<br />
+
+Installing desktop option (DSK) will configure the desktop shell including configs for Niri, Noctalia V5, and more.
+
 
 
 <br />
@@ -101,6 +105,23 @@ Note: I didn't hardcode a username in the home.nix flake. The username will auto
 The `home.nix` uses the legacy system of just copying the dotfiles instead of the declarative approach.  
 I plan on making it declarative, but until then this will do - also makes it easier to fork the repo and edit the `home.nix` file I suppose.  
 
+<br />
+
+## Nov-2026: Backup setup update
+Each host set up should be connected to the same tailnet as my other devices (tailnet will automatically be installed).
+This allows for interconnectivity and securitybut for one (or two?) but in addition to that it allows each device to connect to my home-lab server.
+My home-lab server runs Jellyfin, syncthing (to sync my obsidian notes), and serves two Samba shares (one for personal storage and the other as a restic repo for local backups).
+See more about that home-lab server see here: https://github.com/QuantumZenoSix/home-lab
+
+This is the relevant script here: `./scripts/utils/backup-initializer/backup-initializer.sh`
+
+That script will connect to my home-lab server, mount the samba shares, and create systemd service timers to run scheduled backups.
+There will two backup jobs, one local backup job (using the second Samba share as the local backup repo) and one cloud backup job hosted by Backblaze B2 Object storage.
+
+My home lab server manages all of the monitoring and alerting of the backups while this system will handle all local activities (backups, automated test restores, repo health checks) sending heartbeats to the home-lab upon succesful completion of certain tasks.
+
+
+<br />
 
 ## ❔ What apps are included?
 
