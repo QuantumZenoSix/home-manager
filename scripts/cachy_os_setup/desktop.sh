@@ -315,6 +315,14 @@ flatpak install -y --noninteractive flathub com.usebruno.Bruno
 # printf "\n[+] Installing archlinux-tweak-tool-git (optional)\n\n"
 # paru -S archlinux-tweak-tool-git
 
+
+echo "→ Installing tools for OCR + Gif recording..."
+sudo pacman -S --needed --noconfirm tesseract tesseract-data-eng
+
+paru --needed --noconfirm -S wl-screenrec  # AUR
+
+
+
 # ─────────────────────────────────────────────────────────────────────
 # Optional: Virtualization stack (qemu + virt-manager) for VMs / future GPU passthrough
 # ─────────────────────────────────────────────────────────────────────

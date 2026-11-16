@@ -491,22 +491,20 @@ if [ "${INSTALL_TYPE}" = "full" ] || [ "${INSTALL_TYPE}" = "configonly" ]; then
 
     cat > "$README" <<'EOF'
 ### Post-Install Todos
-- Connect to tailscale
-- Connect to samba share (ada-pi)
-- Connect to syncthing for Obsidian notes
+- Connect to tailscale (run: `sudo tailscale up`)
 EOF
 
     if [ "${INSTALL_SUBTYPE}" = "desktop" ]; then
         cat >> "$README" <<'EOF'
 
 ### Desktop todos
-- Set Wallpaper
 - Confirm portals are running: `ps aux | grep xdg-desktop-portal`
 - Or start them manually:
     /usr/lib/xdg-desktop-portal &
     /usr/lib/xdg-desktop-portal-gtk &
 
 #### Optional todos (should already be handled)
+- Connect syncthing to local home-lab server - to sync Obsidian notes (browser: http://127.0.0.1:8384/)
 - Run `qt6ct` and `kvantummanager` to changed configured theme for qt apps (preferred theme already applied)
 - Run "Monique" for multi-monitor setup
 - Run a scripts to check which programs did/didn't install correctly
@@ -520,20 +518,19 @@ EOF
     cat "$README"
     printf "\n→ Saved to %s\n\n" "$README"
 
-    if command -v zsh &> /dev/null; then
-        zsh
-    else
-        echo "→ zsh is not installed. To utilize zsh features install zsh."
-    fi
 
-else
-
-    printf "\n\n\n"
-    echo "# ────────────────────────────────────────────────"
-    echo "#        FINISHED! "
-    echo "# ────────────────────────────────────────────────"
-    printf "\n\n\n"
 
 fi
 
+printf "\n\n\n"
+echo "# ────────────────────────────────────────────────"
+echo "#        FINISHED! "
+echo "# ────────────────────────────────────────────────"
+printf "\n\n\n"
 
+if command -v zsh &> /dev/null; then
+    printf "\n\n\nLog out/in or enter a new shell by entering 'zsh'"
+    zsh
+else
+    echo "→ zsh is not installed. To utilize zsh features install zsh."
+fi

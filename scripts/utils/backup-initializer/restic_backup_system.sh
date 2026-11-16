@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 
-REMOTE_SERVER=$(cat /etc/home-manager/remote-server-hostname | xargs)     # home lab server name
+REMOTE_SERVER=$(cat /etc/home-manager/remote-server-details.env | xargs)     # home lab server name
 SYSTEM_NAME_TAG="system-$(hostname)"
 
 # Restore-test data lives here, not next to the script. The system backup includes it.
 RESTORE_TEST_DIR='/var/lib/restic-backup'
 
-# No need to set a source - source is this system -> /
+# Important: Essential if running a script via a systemd service
+export HOME=/root
+export XDG_CACHE_HOME=/root/.cache
+export RESTIC_CACHE_DIR=/root/.cache/restic
+mkdir -p "$RESTIC_CACHE_DIR"
 
 printf "[START] =>$(date)\n\n"
+
+
 
 # Run one backup at a time. Both backup scripts share this lock, so if the other one is still
 # running, this one waits for it (up to an hour) instead of working on the same repositories at once.
@@ -106,7 +112,7 @@ function repo_integrity_check(){
 	# A plain check builds a fresh temporary metadata cache in TMPDIR. Only the backup drive has room for that,
 	# so with the /var/tmp fallback reuse /root/.cache/restic instead
 	check_opts=""
-	[[ "$TMPDIR" != /media/HDD-Seagate-2TB-Backup/restic-tmp ]] && check_opts="--with-cache"
+	[[ "$TMPDIR" != /mnt/data-backup/restic-tmp ]] && check_opts="--with-cache"
 
 	if restic check $check_opts; then
 		echo "SUCCESS: Repository integrity check passed."
@@ -114,7 +120,7 @@ function repo_integrity_check(){
 	else
 		exit_status=$?
 		echo "ERROR: Repository integrity check failed (exit code: $exit_status)."
-		return 1
+        exit 1
 	fi
 }
 
@@ -145,7 +151,7 @@ function local_backup_tasks(){
 		# Remove stale locks first - check needs a lock too
 		restic unlock
 		# Skip this repo (but still run B2) if the check fails
-		repo_integrity_check || return 1
+		repo_integrity_check
 		backup
 		prune
 		test_restore
@@ -164,7 +170,7 @@ function cloud_backup_tasks(){
 
 	# Remove stale locks first - check needs a lock too
 	restic unlock
-	repo_integrity_check || return 1
+	repo_integrity_check
 	backup
 	prune 'extra-retention'
 	test_restore
