@@ -108,8 +108,8 @@ I plan on making it declarative, but until then this will do - also makes it eas
 <br />
 
 ## Nov-2026: Backup setup update
-Each host set up should be connected to the same tailnet as my other devices (tailnet will automatically be installed).
-This allows for interconnectivity and securitybut for one (or two?) but in addition to that it allows each device to connect to my home-lab server.
+Each host set up should be connected to the same tailnet as my other devices (tailscale will automatically be installed).
+This allows for interconnectivity and security for one (or two?) but in addition to that it allows each device to connect to my home-lab server.
 My home-lab server runs Jellyfin, syncthing (to sync my obsidian notes), and serves two Samba shares (one for personal storage and the other as a restic repo for local backups).
 See more about that home-lab server see here: https://github.com/QuantumZenoSix/home-lab
 
