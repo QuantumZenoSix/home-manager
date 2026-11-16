@@ -306,7 +306,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-
 
 
 printf "\n[+] Installing DBeaver (database manager)\n\n"
-flatpak install  -y --noninteractive flathub io.dbeaver.DBeaverCommunity
+# flatpak install  -y --noninteractive flathub io.dbeaver.DBeaverCommunity
+sudo pacman -S --needed --noconfirm dbeaver
 
 printf "\n[+] Installing Bruno (api client gui)\n\n"
 flatpak install -y --noninteractive flathub com.usebruno.Bruno
