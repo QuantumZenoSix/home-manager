@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Restic system backup at 6:00 pm
+
+[Timer]
+OnCalendar=*-*-* 18:00:00
+# Run at boot if the Pi was off at 18:00 (6pm).
+Persistent=true
+
+[Install]
+WantedBy=timers.target

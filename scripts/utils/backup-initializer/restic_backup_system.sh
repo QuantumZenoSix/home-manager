@@ -1,0 +1,186 @@
+#!/usr/bin/env bash
+
+REMOTE_SERVER=$(cat /etc/home-manager/remote-server-hostname | xargs)     # home lab server name
+SYSTEM_NAME_TAG="system-$(hostname)"
+
+# Restore-test data lives here, not next to the script. The system backup includes it.
+RESTORE_TEST_DIR='/var/lib/restic-backup'
+
+# No need to set a source - source is this system -> /
+
+printf "[START] =>$(date)\n\n"
+
+# Run one backup at a time. Both backup scripts share this lock, so if the other one is still
+# running, this one waits for it (up to an hour) instead of working on the same repositories at once.
+LOCK_FILE='/run/lock/restic_backup.lock'    # Reference lock file
+exec 9>"${LOCK_FILE}"                       # Open lock file via the file descriptor
+
+# Try and see if we can take the lock - wait an hour for it to be freed if needed (if we get past this, we take the lock)
+if ! flock -w 3600 9; then
+    echo "[!] Another backup still holds ${LOCK_FILE} after waiting 1 hour - exiting" >&2
+    exit 1
+fi
+
+
+
+
+function backup(){
+
+	if restic \
+		--host "${SYSTEM_NAME_TAG}" \
+		--verbose=2 \
+		--compression=max \
+		--exclude-caches \
+		--exclude=".deleted" \
+		--exclude="/proc" \
+		--exclude="/sys" \
+		--exclude="/dev" \
+		--exclude="/run" \
+		--exclude="/tmp" \
+		--exclude="/var/tmp" \
+		--exclude="/var/cache" \
+		--exclude="/var/run" \
+		--exclude="/lost+found" \
+		--exclude="/media" \
+		--exclude="/mnt" \
+		--exclude="**/.cache" \
+		--exclude="**/.node_modules" \
+		--exclude="**/.npm" \
+		--exclude="**/..Trash" \
+		backup /; then
+		echo "[+] Finished backup - pushing notification to updatime kuma..."
+		curl -s -o /dev/null "http://${REMOTE_SERVER}:3001/api/push/${KUMA_SYSTEM_KEY}?status=up&msg=OK&ping="
+	fi
+
+}
+
+function prune(){
+
+	# Pick the retention policy, then prune old snapshots
+	if [[ "${1}" == 'extra-retention' ]]; then
+		keep_opts=(--keep-daily 30 --keep-monthly 12)
+	else
+		keep_opts=(--keep-daily 7 --keep-weekly 6)
+	fi
+
+	if restic \
+		--host "${SYSTEM_NAME_TAG}" \
+		--verbose=2 \
+		forget "${keep_opts[@]}" --prune; then
+		echo "[+] Finished prune - pushing notification to updatime kuma..."
+		curl -s -o /dev/null "http://${REMOTE_SERVER}:3001/api/push/${KUMA_SYSTEM_PRUNE_KEY}?status=up&msg=OK&ping="
+	fi
+}
+
+function setup_restore_test(){
+	# Make sure we have test data to restore
+	[[ ! -d "${RESTORE_TEST_DIR}" ]] && install -d -m 700 "${RESTORE_TEST_DIR}"
+	# New content every run, so the restore proves tonight's snapshot is readable
+	date > "${RESTORE_TEST_DIR}/test_file.txt"
+}
+
+function test_restore(){
+
+	# Restore into a scratch dir so the live test file stays in place for the next repo's backup
+	restore_dir=$(mktemp -d)
+	restic restore "latest:${RESTORE_TEST_DIR}/" --host "${SYSTEM_NAME_TAG}" --include test_file.txt --target "${restore_dir}"
+
+	if [[ "$(sha256sum "${restore_dir}/test_file.txt" | cut -d ' ' -f 1)" == "$(sha256sum "${RESTORE_TEST_DIR}/test_file.txt" | cut -d ' ' -f 1)" ]]; then
+		echo "[+] Restore verification successful"
+
+		# Send kuma heartbbeat
+		curl -s -o /dev/null "http://${REMOTE_SERVER}:3001/api/push/${KUMA_RESTORE_KEY}?status=up&msg=OK&ping="
+
+	else
+		echo "[+] Restore verification FAILED"
+	fi
+
+	rm -rf "${restore_dir}"
+}
+
+function repo_integrity_check(){
+
+
+	echo "Starting Restic repository integrity check..."
+
+	# A plain check builds a fresh temporary metadata cache in TMPDIR. Only the backup drive has room for that,
+	# so with the /var/tmp fallback reuse /root/.cache/restic instead
+	check_opts=""
+	[[ "$TMPDIR" != /media/HDD-Seagate-2TB-Backup/restic-tmp ]] && check_opts="--with-cache"
+
+	if restic check $check_opts; then
+		echo "SUCCESS: Repository integrity check passed."
+		curl -s -o /dev/null "http://${REMOTE_SERVER}:3001/api/push/${KUMA_REPOCHECK_KEY}?status=up&msg=OK&ping="
+	else
+		exit_status=$?
+		echo "ERROR: Repository integrity check failed (exit code: $exit_status)."
+		return 1
+	fi
+}
+
+function set_backup_tmp_dir(){
+
+    # /tmp is a small RAM-backed tmpfs, so put restic temp files on the backup drive (restic-tmp is missing when it's unmounted).
+    # Otherwise use /var/tmp (on disk, excluded from the system backup), so the B2 run does not depend on the local drive.
+    if [[ -d /mnt/data-backup/restic-tmp ]]; then
+        export TMPDIR=/mnt/data-backup/restic-tmp
+    else
+        export TMPDIR=/var/tmp/restic
+        mkdir -p -m 700 "$TMPDIR"
+    fi
+
+}
+
+function local_backup_tasks(){
+
+	# Local backup -> Load env vars
+	echo "[+] Starting Local backup"
+	source /etc/home-manager/kuma.env
+	source /etc/home-manager/restic.env	# Sets RESTIC_REPOSITORY (local)
+
+    set_backup_tmp_dir
+
+	# Ensure local destination exists before backing up
+	if [ -d "$RESTIC_REPOSITORY" ]; then
+		# Remove stale locks first - check needs a lock too
+		restic unlock
+		# Skip this repo (but still run B2) if the check fails
+		repo_integrity_check || return 1
+		backup
+		prune
+		test_restore
+	fi
+
+}
+
+function cloud_backup_tasks(){
+
+	# S3 Cloud backup -> Load env vars
+	echo "[+] Starting Cloud backup"
+	source /etc/home-manager/kuma-b2.env
+	source /etc/home-manager/restic-b2.env	# Sets RESTIC_REPOSITORY (cloud)
+
+    set_backup_tmp_dir
+
+	# Remove stale locks first - check needs a lock too
+	restic unlock
+	repo_integrity_check || return 1
+	backup
+	prune 'extra-retention'
+	test_restore
+}
+
+function main(){
+
+
+	setup_restore_test
+	local_backup_tasks
+	cloud_backup_tasks
+
+
+}
+
+main
+
+exit 0
+
