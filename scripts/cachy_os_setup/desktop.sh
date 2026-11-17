@@ -259,6 +259,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo -e "Installing gaming packages ..."
     sudo pacman -S --needed --noconfirm cachyos-gaming-meta
     sudo pacman -S --needed --noconfirm cachyos-gaming-applications
+    sudo pacman -S --needed --noconfirm protonup-qt
+    sudo pacman -S --needed --noconfirm proton-cachyos-slr
+
     # Optional extras many gamers want
     for pkg in mangohud goverlay gamemode gamescope; do
         sudo pacman -S --needed --noconfirm "$pkg"
