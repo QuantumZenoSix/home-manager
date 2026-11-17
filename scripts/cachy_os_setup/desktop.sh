@@ -177,7 +177,9 @@ sudo pacman -S --needed --noconfirm discord
 sudo pacman -S --needed --noconfirm gimp
 sudo pacman -S --needed --noconfirm picard      # Music metadata bulk editor and scanner
 sudo pacman -S --needed --noconfirm nemo       # file explorer   
-sudo pacman -S --needed --noconfirm ark       # file explorer   
+sudo pacman -S --needed --noconfirm file-roller # 'Extract here' in right-click menu
+
+sudo pacman -S --needed --noconfirm ark       # archive extractor   
 sudo pacman -S --needed --noconfirm gvfs-smb   # Access to SMB shares via nautilus file explorer
 paru --needed --noconfirm -S postman-bin
 paru --needed --noconfirm -S neohtop
