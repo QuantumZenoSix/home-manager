@@ -139,6 +139,54 @@ ut_sys_set_ufw_rules(){
     sudo ufw status numbered
 }
 
+ut_sys_refresh_cifs_mount() {
+
+    local MNT="$1"
+    local AUTOMOUNT
+
+    if [[ -z "$MNT" ]]; then
+        echo "Usage: ut_sys_refresh_cifs_mount /mount/path"
+        return 1
+    fi
+
+    AUTOMOUNT=$(systemd-escape -p --suffix=automount "$MNT")
+
+    echo "Attempting to refresh CIFS mount: $MNT"
+
+    # Detach stale mount
+    sudo umount -l "$MNT"
+
+    # Trigger automount
+    ls -hal "$MNT" >/dev/null 2>&1
+
+    # Check whether mount succeeded
+    if findmnt --mountpoint "$MNT" >/dev/null; then
+        echo "CIFS Share Mounted!"
+        return 0
+    fi
+
+    echo "Mount failed. Restarting automount unit..."
+
+    # Restart systemd automount
+    if ! sudo systemctl restart "$AUTOMOUNT"; then
+        echo "Could not restart $AUTOMOUNT"
+        return 1
+    fi
+
+    # Trigger mount again
+    ls -hal "$MNT" >/dev/null 2>&1
+
+    # Final verification
+    if findmnt --mountpoint "$MNT" >/dev/null; then
+        echo "CIFS Share Mounted!"
+        return 0
+    else
+        echo "Could not mount CIFS share: $MNT"
+        return 1
+    fi
+}
+
+
 ut_sys_detect_distro_type(){
     # returns debian|fedora|arch|null
     if [ -f /etc/os-release ]; then
