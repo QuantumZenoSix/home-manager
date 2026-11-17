@@ -9,17 +9,6 @@ function initialize_files(){
     sudo mkdir -p /etc/home-manager/
     sudo chmod 700 /etc/home-manager/
 
-    # Copy credentials + environment vars
-    echo "[+] Copying files..."
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/kuma-b2.env /etc/home-manager/
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/kuma.env /etc/home-manager/
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/remote-server-details.env /etc/home-manager/
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic-b2.env /etc/home-manager/
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic-password /etc/home-manager/
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic-password-b2 /etc/home-manager/
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic.env /etc/home-manager/
-    sudo install -o root -g root -m 600 $SCRIPT_DIR/smbpassword.env /etc/home-manager/
-
 
     echo "These files in /etc/home-manager/ must be updated in order to proceed:"
     printf "\trestic-b2.env\n"
@@ -41,6 +30,17 @@ function initialize_files(){
         echo "Aborted."
         return 1
     fi   
+
+    # Copy credentials + environment vars
+    echo "[+] Copying files..."
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/kuma-b2.env /etc/home-manager/
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/kuma.env /etc/home-manager/
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/remote-server-details.env /etc/home-manager/
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic-b2.env /etc/home-manager/
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic-password /etc/home-manager/
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic-password-b2 /etc/home-manager/
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/restic.env /etc/home-manager/
+    sudo install -o root -g root -m 600 $SCRIPT_DIR/smbpassword.env /etc/home-manager/
 
 }
 

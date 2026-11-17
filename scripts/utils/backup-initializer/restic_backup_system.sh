@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-REMOTE_SERVER=$(cat /etc/home-manager/remote-server-details.env | xargs)     # home lab server name
+source /etc/home-manager/remote-server-details.env
 SYSTEM_NAME_TAG="system-$(hostname)"
 
 # Restore-test data lives here, not next to the script. The system backup includes it.
