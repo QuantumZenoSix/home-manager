@@ -347,13 +347,25 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     # Basic setup (follow CachyOS wiki for full GPU passthrough)
     echo "→ Enabling libvirt service..."
     sudo systemctl enable --now libvirtd
+    sudo systemctl enable --now virtlogd
 
     echo "→ Adding current user to libvirt group (re-login or reboot needed after)..."
     sudo usermod -aG libvirt "$(whoami)"
 
     echo "→ Optional: For Windows 11 VMs, add emulated TPM later in virt-manager."
     echo "   Check CachyOS wiki: https://wiki.cachyos.org/virtualization/qemu_and_vmm_setup"
+
+    # Start default virtual network if not already running
+    sudo virsh net-start default 2>/dev/null || true
+
+    # Enable default network at boot
+    sudo virsh net-autostart default
+
+    echo "Virtualization setup complete."
+    echo "Log out and back in for group membership changes to apply."
 fi
+
+
 
 
 

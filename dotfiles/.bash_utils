@@ -84,6 +84,24 @@ ut_txt_list_difference(){
 #             sys
 # ────────────────────────────────────────────────
 
+ut_sys_setup_virtualization(){
+
+    # Enable and start virtualization services
+    sudo systemctl enable --now libvirtd virtlogd
+
+    # Add current user to libvirt group
+    sudo usermod -aG libvirt "$(whoami)"
+
+    # Start default virtual network if not already running
+    sudo virsh net-start default 2>/dev/null || true
+
+    # Enable default network at boot
+    sudo virsh net-autostart default
+
+    echo "Virtualization setup complete."
+    echo "Log out and back in for group membership changes to apply."
+}
+
 ut_sys_set_ufw_rules(){
     # UFW syntax: allow in on <interface> out on <interface> from <ip> to <ip> port <port> proto <protocol>
 
