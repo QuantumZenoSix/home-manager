@@ -221,6 +221,9 @@ sudo pacman -S --needed --noconfirm wezterm
 cargo install brows3 --locked
 
 
+pacman -Syu --needed --noconfirm proton-pass
+pacman -Syu --needed --noconfirm proton-vpn-gtk-app
+
 
 echo -e "${GREEN}=========================================="
 echo -e " Firewall setup (ufw) — simple + enable "
