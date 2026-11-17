@@ -65,7 +65,7 @@ order = [ "Primary" ]
         members = [ "workspaces", "screenshot", "widget", "recorder", "wallpaper", "keybinds" ]
         opacity = 1.0
         padding = 10.0
-        radius = 8.0
+        radius = 15.0
 
         [[bar.Primary.capsule_group]]
         accordion = true

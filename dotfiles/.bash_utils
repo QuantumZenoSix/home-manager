@@ -158,6 +158,7 @@ ut_sys_set_ufw_rules(){
 }
 
 ut_sys_refresh_cifs_mount() {
+    # Fix stale mounts and hanging filesystems
 
     local MNT="$1"
     local AUTOMOUNT
