@@ -327,6 +327,10 @@ flatpak install -y --noninteractive flathub com.usebruno.Bruno
 
 echo "→ Installing tools for OCR + Gif recording..."
 sudo pacman -S --needed --noconfirm tesseract tesseract-data-eng
+# Cross-hair for region recording
+sudo pacman -S --needed --noconfirm slurp
+# Fallback Screen-recorder
+sudo pacman -S --needed --noconfirm wf-recorder
 
 paru --needed --noconfirm -S wl-screenrec  # AUR
 

@@ -145,9 +145,25 @@ binds {
     Mod+W                               { toggle-column-tabbed-display; }
 
     // ─── Screenshots ───
-    CTRL+Shift+1                        { screenshot; }
-    CTRL+Shift+2                        { screenshot-window; }
-    CTRL+Shift+3                        { screenshot-screen; }
+    // CTRL+Shift+1                        { screenshot; }
+    // CTRL+Shift+2                        { screenshot-window; }
+    // CTRL+Shift+3                        { screenshot-screen; }
+
+    CTRL+Shift+0                        { spawn-sh "noctalia msg plugin alexander/screen-toolkit:service all toggle"; }
+    CTRL+Shift+1                        { spawn-sh "noctalia msg plugin alexander/screen-toolkit:service all annotate"; }
+    CTRL+Shift+2                        { spawn-sh "noctalia msg plugin alexander/screen-toolkit:service all annotateWindow"; }
+    CTRL+Shift+3                        { spawn-sh "noctalia msg plugin alexander/screen-toolkit:service all annotateFullscreen"; }
+    CTRL+Shift+4                        { spawn-sh "noctalia msg plugin noctalia/screen_recorder:service all toggle"; }
+    CTRL+Shift+5                        { spawn-sh "noctalia msg plugin noctalia/screen_recorder:service all stop"; }
+
+
+
+// 0. toggle
+// 1. screenshot annotate - free 
+// 2. screenshot annotate - window
+// 3. screenshot annotate - FullScreen
+
+
 
     // ─── Emergency Escape Key ───
     // Use this when a fullscreen app blocks your keybinds.

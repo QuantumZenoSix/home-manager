@@ -103,6 +103,11 @@ config.keys = {
     -- Zoom pane (like tmux resize-pane -Z)
     { key = '|', mods = 'LEADER', action = wezterm.action.TogglePaneZoomState },
 
+    { key = '|', mods = 'LEADER', action = wezterm.action.TogglePaneZoomState },
+
+    { key = 'e', mods = 'LEADER', action = wezterm.action.EmitEvent 'equalize-panes'},
+    { key = '=', mods = 'LEADER', action = wezterm.action.EmitEvent 'equalize-panes'},
+
     -- Switch panes using Alt-arrow keys (no leader/prefix needed)
     { key = 'LeftArrow', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Left' },
     { key = 'RightArrow', mods = 'LEADER', action = wezterm.action.ActivatePaneDirection 'Right' },

@@ -266,6 +266,14 @@ widget_order = [
 model = "default"
 open_target = "tmux"
 
+[plugin_settings."alexander/screen-toolkit"]
+gif-max-seconds = 90
+record-copy-to-clipboard = true
+record-skip-confirmation = true
+
+[plugin_settings."noctalia/screen_recorder"]
+audio_source = "both"
+
 [plugins]
 enabled = [
     "rylos/syncthing",
