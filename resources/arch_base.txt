@@ -50,8 +50,8 @@ which
 xclip  			# xclip: Clipboard, X11 integration 
 xsel  			# xsel: Clipboard, X11 
 restic
-pnpm            # package manager
 git-filter-repo
+pnpm            # package manager
 
 
 NOTE: Installing programming languages and tools...
@@ -80,6 +80,7 @@ fuse2           # manage app images
 flatpak
 smbclient
 cifs-utils
+croc              # simple file send/receive
 docker            # docker.io: Containers, system service 
 docker-compose    # docker-compose-plugin: Docker compose 
 entr              # entr ─ super useful file watcher (needed for tmux autoreload)
